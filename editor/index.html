@@ -1,0 +1,300 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      .app {
+        display: flex;
+        flex-direction: row;
+        max-height: 100%;
+      }
+      .map {
+        flex: 1;
+        overflow: auto;
+        max-height: 100vh;
+        position: relative;
+      }
+      .map > div {
+      }
+      .map canvas {
+        position: absolute;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -webkit-crisp-edges;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+      }
+      .tiles {
+        overflow: hidden;
+        flex: 1;
+        position: relative;
+      }
+      .tiles > div {
+        height: 100%;
+        padding: 1em;
+        overflow: auto;
+        position: relative;
+      }
+      .menu {
+        padding: 1em;
+        flex: 0;
+        font-family: sans-serif;
+      }
+      input, button {
+        font: inherit;
+      }
+      .sidebar {
+        height: 100vh;
+        flex: 0;
+        border-left: 1px solid black;
+        display: flex;
+        flex-direction: column;
+      }
+      .highlight {
+        border: 1px solid red;
+        pointer-events: none;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="map">
+        <div>
+          <canvas class="layer-bg"></canvas>
+          <canvas class="layer-te"></canvas>
+          <canvas class="layer-fg"></canvas>
+          <canvas class="layer-co"></canvas>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="menu">
+          <ul class="layer">
+            <li data-layer="background">
+              <label><input type="radio" checked name="layer" value="background"> BG</label>
+            </li>
+            <li data-layer="terrain">
+              <label><input type="radio" name="layer" value="terrain"> TE</label>
+            </li>
+            <li data-layer="foreground">
+              <label><input type="radio" name="layer" value="foreground"> FG</label>
+            </li>
+            <li data-layer="collision">
+              <label><input type="radio" name="layer" value="collision"> CO</label>
+            </li>
+          </ul>
+          <button>Save</button>
+        </div>
+        <div class="tiles">
+          <div>
+            <img src="/tiles">
+            <div class="highlight"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var tileSize = 16;
+
+      var WIDTH = 64;
+      var HEIGHT = 64;
+      var ZOOM = 4;
+
+      var bgLayer = document.querySelector('.layer-bg');
+      var teLayer = document.querySelector('.layer-te');
+      var fgLayer = document.querySelector('.layer-fg');
+      var coLayer = document.querySelector('.layer-co');
+      var ctxBg = bgLayer.getContext('2d');
+      var ctxTe = bgLayer.getContext('2d');
+      var ctxFg = fgLayer.getContext('2d');
+      var ctxCo = coLayer.getContext('2d');
+      ctxBg.mozImageSmoothingEnabled = false;
+      ctxTe.mozImageSmoothingEnabled = false;
+      ctxFg.mozImageSmoothingEnabled = false;
+      ctxCo.mozImageSmoothingEnabled = false;
+
+      var selectedLayer = document.querySelector('[name="layer"][checked]').value;
+      var menuEl = document.querySelector('.menu');
+      menuEl.addEventListener('click', function (e) {
+        if (e.target.name && e.target.name === 'layer') {
+          selectedLayer = e.target.value;
+          console.log(selectedLayer);
+        }
+      });
+
+      var map;
+
+      var tiles = document.querySelector('.tiles img');
+      var sheetWidth;
+
+      var selectedTile = 0;
+
+      function init () {
+        data = this.responseText;
+        try {
+          map = JSON.parse(data);
+        } catch (e) {
+          console.log('invalid map');
+          map = {
+            width: 32,
+            height: 32,
+          };
+          var size = map.width * map.height;
+          map.background = Array(size).fill(154);
+          map.terrain = Array(size).fill(51);
+          map.foreground = Array(size).fill(51);
+          map.collision = Array(size).fill(0);
+        }
+
+        WIDTH = map.width;
+        HEIGHT = map.height;
+
+        sheetWidth = tiles.width / 16 | 0;
+
+        [teLayer, bgLayer, fgLayer, coLayer].forEach(function (l) {
+          l.width = WIDTH * tileSize;
+          l.style.width = l.width * ZOOM + 'px';
+          l.height = HEIGHT * tileSize;
+          l.style.height = l.height * ZOOM + 'px';
+        });
+
+        render();
+      }
+
+      function render() {
+        ctxBg.fillRect(0, 0, bgLayer.width, bgLayer.height);
+        ctxTe.clearRect(0, 0, teLayer.width, teLayer.height);
+        ctxFg.clearRect(0, 0, bgLayer.width, bgLayer.height);
+        ctxCo.clearRect(0, 0, bgLayer.width, bgLayer.height);
+
+        map.background.forEach(function (p, i) {
+          var x = i % WIDTH;
+          var y = i / WIDTH | 0;
+          var sx = p % sheetWidth;
+          var sy = p / sheetWidth | 0;
+          ctxBg.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+        });
+
+        map.terrain.forEach(function (p, i) {
+          var x = i % WIDTH;
+          var y = i / WIDTH | 0;
+          var sx = p % sheetWidth;
+          var sy = p / sheetWidth | 0;
+          ctxTe.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+        });
+
+        map.foreground.forEach(function (p, i) {
+          var x = i % WIDTH;
+          var y = i / WIDTH | 0;
+          var sx = p % sheetWidth;
+          var sy = p / sheetWidth | 0;
+          ctxFg.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
+        });
+
+        ctxCo.fillStyle = 'rgba(255,0,0,.2)';
+        map.collision.forEach(function (p, i) {
+          var x = i % WIDTH;
+          var y = i / WIDTH | 0;
+          if (!p) return;
+          ctxCo.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+        });
+
+      }
+
+      var mapEl = document.querySelector('.map div');
+      mapEl.addEventListener('click', function (e) {
+        var x = e.offsetX / tileSize / ZOOM | 0;
+        var y = e.offsetY / tileSize / ZOOM | 0;
+        selectedOffset = y * WIDTH + x;
+        console.log(selectedOffset);
+        if (selectedLayer === 'collision') {
+          map[selectedLayer][selectedOffset] = 1 - map[selectedLayer][selectedOffset];
+        } else {
+          map[selectedLayer][selectedOffset] = selectedTile;
+        }
+        save();
+        render();
+      });
+
+      var saveTimeout;
+      function save() {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(doSave, 1000);
+      }
+
+      function doSave() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/save");
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify(map));
+      }
+
+      var highlight = document.querySelector('.highlight');
+      tiles.addEventListener('click', function (e) {
+        var x = e.offsetX / tileSize | 0;
+        var y = e.offsetY / tileSize | 0;
+        highlight.style.left = x * tileSize + tiles.offsetLeft + 'px';
+        highlight.style.top = y * tileSize + tiles.offsetTop + 'px';
+        selectedTile = x + y * sheetWidth;
+      });
+
+      window.addEventListener('keydown', function (e) {
+        if (!(e.shiftKey || e.metaKey || e.ctrlKey)) {
+          if (e.key === '1') {
+            document.querySelector('[name="layer"][value="background"]').checked = true;
+            selectedLayer = 'background';
+          }
+          if (e.key === '2') {
+            document.querySelector('[name="layer"][value="terrain"]').checked = true;
+            selectedLayer = 'terrain';
+          }
+          if (e.key === '3') {
+            document.querySelector('[name="layer"][value="foreground"]').checked = true;
+            selectedLayer = 'foreground';
+          }
+          if (e.key === '4') {
+            document.querySelector('[name="layer"][value="collision"]').checked = true;
+            selectedLayer = 'collision';
+          }
+
+          if (e.key === 'w') {
+            selectedTile -= sheetWidth;
+          }
+          if (e.key === 's') {
+            selectedTile += sheetWidth;
+          }
+          if (e.key === 'a') {
+            selectedTile -= 1;
+          }
+          if (e.key === 'd') {
+            selectedTile += 1;
+          }
+
+          var x = selectedTile % sheetWidth;
+          var y = selectedTile / sheetWidth | 0;
+          highlight.style.left = x * tileSize + tiles.offsetLeft + 'px';
+          highlight.style.top = y * tileSize + tiles.offsetTop + 'px';
+        }
+      });
+
+      tiles.onload = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = init;
+        xhr.open("GET", "/map");
+        xhr.send();
+      }
+
+
+    </script>
+  </body>
+</html>
