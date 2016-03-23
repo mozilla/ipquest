@@ -22,12 +22,44 @@
 
 ## API Patents
 - Wizard in a jail cell for casting a healing spell owned by BigCo, despite using different magic words or ingredients.
-- OR
-- Find a group of people assembled for an epic quest, LOTR style
-- They are talking about forging or searching for the legendary triangle of power that is needed for some reason or another (it should line up directly with your goal)
-- You say you are on that quest too
+
+## Fellowship of the Random Integer Number Generator
+- Player encounters a group of people assembled for an epic quest, LOTR style.
+- They are talking about forging or searching for the legendary triangle of power that is needed for some reason or another (it should line up directly with your goal). Player is given the option to listen in or 'ignore.'
+
+> (ELROND): We have only one choice.  The Random Integer Number Generator must be ... invalidated.
+> 
+> (GIMLI): 	Then what are we waiting for?
+>
+> (ELROND): The RING cannot be invalidated, Gimli, son of Gloin, by any procedure that we here possess. The RING was made in the fires of the Patent Office.  Only there can it be unmade.  It must be taken to the Patent Trial and Appeal Board and cast back into the firey chasm from whence it came.
+> 
+> (BOROMIR):  One does not simply walk into the Patent Office and file for Inter Partes Review.  Its black gates are guarded by more than just orcs. There is evil there that does not sleep and the great eye is ever watchful.  Tis a barren wasteland, riddled with fire and ash and dust.  The very air you breathe is a poisonous fume.  Not with ten thousand attorneys could you do this. It is folly.
+
+- Player is given the option to interrupt to say they are on that quest too, or to 'ignore.'
+
+> (Player):  I'm also trying to invalidate the RING so that the world may live free of its corrupting influence.
+
 - They say they want to help - you have their sword, their bow, and their axe. :)
-- You accept and want to start. They stop and say, "what about you, aren't you contributing anything?" They realize you don't have any patents and the fellowship disbands
+
+> (GANDALF): 	I will help you bear this burden of proof! We shall be a Fellowship of the RING!
+> 
+> (ARAGORN): 	The Fellowship has my sword.
+> 
+> (LEGOLAS): 	And the Fellowship has my bow.
+>
+> (GIMLI): 	And my axe!!
+> 
+
+- Player is given the option to 'join the fellowship' or decide to go it on their own.
+  * If 'join' is chosen
+
+> (GANDALF):  Wait, aren't you going to contribute anything? ...
+>
+> (ARAGORN):  Well this is awkward. We kind of imagined that everyone would contribute their own inventions to the Fellowship of the RING. I'm afraid we'll just have to wish you luck and go our separate ways.
+
+  * If 'go it alone' is chosen
+
+> (GANDALF):  Well, see you all all the Patent Office. Good luck!
 
 ## Patented articles
 - Enter a shop and buy a weapon
