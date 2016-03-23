@@ -73,7 +73,9 @@
 
 - Try to equip the weapon via inventory
 - Either when equipping or when trying to use it, receive an error message [see below under abilities/spells]
-- Fine print for weapon: NO EXPRESS OR IMPLIED LICENSES TO ANY PATENT CLAIMS, including without limitation the patents of BigCo, ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate patent licenses.
+- Fine print for weapon:
+
+> NO EXPRESS OR IMPLIED LICENSES TO ANY PATENT CLAIMS, including without limitation the patents of BigCo, ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate patent licenses.
 
 - If the player returns to the shop, new items are added. Licenses for Rusty Dagger are prohibitively expensive.
 
@@ -83,7 +85,7 @@
 ## Patented articles redux
 - Shop sells a bow
 > (MERCHANT): Hey, welcome back! I got some new items in stock!
-> Rusty Dagger / Fully Licensed Gilded Bow and Steel Arrows / Licenses for Rusty Dagger / Cancel
+> Rusty Dagger / Fully Licensed Gilded Bow / Steel Arrows / Licenses for Rusty Dagger / Cancel
 
 - Player buys bow and is prompted to buy arrows
 
@@ -93,7 +95,7 @@
 - Using bow without arrows yields an error saying you need arrows (or just can't be done)
 - Using bow WITH arrows gives an error message because license for the bow doesn't cover the arrows. Even though arrows are essential for the bow to be useful.
 
-> Thank you for your purchase of your new, fully licensed, Gilded Bow! Note: license for use of Arrows not included. You may use your Gilded Bow only as authorized by appropriate patent licenses.
+> Congratulations on purchasing your new, fully licensed, Gilded Bow! Note: license for use of Arrows not included. You may use your Gilded Bow only as authorized by appropriate patent licenses.
 
 - License for arrows is still prohibitively expensive....
 
