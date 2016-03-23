@@ -62,19 +62,43 @@
 > (GANDALF):  Well, see you all all the Patent Office. Good luck!
 
 ## Patented articles
-- Enter a shop and buy a weapon
+- Player can enter a shop and speak with shopkeeper
+
+> (MERCHANT): I hear you're in need of equipment! Want to see what I've got for sale?
+> Yes / No
+
+- Yes
+> (MERCHANT): I'm afraid I don't have much in stock at the moment.
+> Rusty Dagger / Cancel
+
 - Try to equip the weapon via inventory
 - Either when equipping or when trying to use it, receive an error message [see below under abilities/spells]
-- Fine print for weapon: NO EXPRESS OR IMPLIED LICENSES TO ANY PATENT CLAIMS, including without limitation the patents of BigCo,
-ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate patent licenses.
-- Back at the shop, a new item is added: Patent License, which is prohibitively expensive (99999 gold?)
+- Fine print for weapon: NO EXPRESS OR IMPLIED LICENSES TO ANY PATENT CLAIMS, including without limitation the patents of BigCo, ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate patent licenses.
+
+- If the player returns to the shop, new items are added. Licenses for Rusty Dagger are prohibitively expensive.
+
+> (MERCHANT): Hey, welcome back! I got some new items in stock!
+> Rusty Dagger / Fully Licensed Gilded Bow / Steel Arrows / Licenses for Rusty Dagger / Cancel
 
 ## Patented articles redux
 - Shop sells a bow
-- Bow is advertised as including a license to use the bow
-- Player buys bow and arrows, but gets an error when trying to use
-- License for the bow doesn't cover the arrows. Even though arrows are essential for the bow to be useful.
+> (MERCHANT): Hey, welcome back! I got some new items in stock!
+> Rusty Dagger / Fully Licensed Gilded Bow and Steel Arrows / Licenses for Rusty Dagger / Cancel
+
+- Player buys bow and is prompted to buy arrows
+
+> (MERCHANT): Won't do you much good without something to shoot!
+> Buy Steel Arrows / No
+
+- Using bow without arrows yields an error saying you need arrows (or just can't be done)
+- Using bow WITH arrows gives an error message because license for the bow doesn't cover the arrows. Even though arrows are essential for the bow to be useful.
+
+> Thank you for your purchase of your new, fully licensed, Gilded Bow! Note: license for use of Arrows not included. You may use your Gilded Bow only as authorized by appropriate patent licenses.
+
 - License for arrows is still prohibitively expensive....
+
+> (MERCHANT): Hey, welcome back! I got some new items in stock!
+> Rusty Dagger / Fully Licensed Gilded Bow / Steel Arrows / Licenses for Rusty Dagger / Licenses for Steel Arrows / Cancel
 
 ## Spells, Abilities, Status Effects
 - Cease and Desist (lose a turn?)
@@ -83,7 +107,7 @@ ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as au
 - Enjoin (prevents you from using that ability/item for the rest of the fight)
 
 ## Other party members
-- Find someone who fits party member stereotype (sponny bard!)
+- Find someone who fits party member stereotype (spoony bard!)
 - Talk to him/her and discover he has one of the quest items you are looking for
 - You both get really excited
 - He just ends up leaving you hanging ("well... good luck!")
