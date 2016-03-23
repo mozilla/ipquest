@@ -6,6 +6,9 @@
     display: block;
     margin: auto;
 }
+#game {
+  margin-top: 1em;
+}
 body {
     background: #444;
 }

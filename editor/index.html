@@ -16,6 +16,20 @@
         flex-direction: row;
         max-height: 100%;
       }
+      .layer {
+        list-style-type: none;
+        padding: 0;
+      }
+      .layer li {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid black;
+        align-items: center;
+      }
+      .layer li label {
+        flex: 1;
+        padding: .5em 0;
+      }
       .map {
         flex: 1;
         overflow: auto;
@@ -70,25 +84,26 @@
     <div class="app">
       <div class="map">
         <div>
-          <canvas class="layer-bg"></canvas>
-          <canvas class="layer-te"></canvas>
-          <canvas class="layer-fg"></canvas>
-          <canvas class="layer-co"></canvas>
+          <canvas class="out"></canvas>
         </div>
       </div>
       <div class="sidebar">
         <div class="menu">
           <ul class="layer">
             <li data-layer="background">
+              <input type="checkbox" value="foreground" checked>
               <label><input type="radio" checked name="layer" value="background"> BG</label>
             </li>
             <li data-layer="terrain">
+              <input type="checkbox" value="foreground" checked>
               <label><input type="radio" name="layer" value="terrain"> TE</label>
             </li>
             <li data-layer="foreground">
+              <input type="checkbox" value="foreground" checked>
               <label><input type="radio" name="layer" value="foreground"> FG</label>
             </li>
             <li data-layer="collision">
+              <input type="checkbox" value="foreground" checked>
               <label><input type="radio" name="layer" value="collision"> CO</label>
             </li>
           </ul>
@@ -110,18 +125,15 @@
       var HEIGHT = 64;
       var ZOOM = 4;
 
-      var bgLayer = document.querySelector('.layer-bg');
-      var teLayer = document.querySelector('.layer-te');
-      var fgLayer = document.querySelector('.layer-fg');
-      var coLayer = document.querySelector('.layer-co');
-      var ctxBg = bgLayer.getContext('2d');
-      var ctxTe = bgLayer.getContext('2d');
-      var ctxFg = fgLayer.getContext('2d');
-      var ctxCo = coLayer.getContext('2d');
-      ctxBg.mozImageSmoothingEnabled = false;
-      ctxTe.mozImageSmoothingEnabled = false;
-      ctxFg.mozImageSmoothingEnabled = false;
-      ctxCo.mozImageSmoothingEnabled = false;
+      var canvas = document.querySelector('.out');
+      var ctx = canvas.getContext('2d');
+
+      var visible = {
+        'background': true,
+        'terrain': true,
+        'foreground': true,
+        'collision': true
+      };
 
       var selectedLayer = document.querySelector('[name="layer"][checked]').value;
       var menuEl = document.querySelector('.menu');
@@ -161,70 +173,87 @@
 
         sheetWidth = tiles.width / 16 | 0;
 
-        [teLayer, bgLayer, fgLayer, coLayer].forEach(function (l) {
-          l.width = WIDTH * tileSize;
-          l.style.width = l.width * ZOOM + 'px';
-          l.height = HEIGHT * tileSize;
-          l.style.height = l.height * ZOOM + 'px';
-        });
+        canvas.width = WIDTH * tileSize;
+        canvas.style.width = canvas.width * ZOOM + 'px';
+        canvas.height = HEIGHT * tileSize;
+        canvas.style.height = canvas.height * ZOOM + 'px';
 
-        render();
+        renderRegion();
       }
 
-      function render() {
-        ctxBg.fillRect(0, 0, bgLayer.width, bgLayer.height);
-        ctxTe.clearRect(0, 0, teLayer.width, teLayer.height);
-        ctxFg.clearRect(0, 0, bgLayer.width, bgLayer.height);
-        ctxCo.clearRect(0, 0, bgLayer.width, bgLayer.height);
+      function render(x, y, w, h) {
+        ctx.fillStyle = '#000';
+        ctx.fillRect(x * tileSize, y * tileSize, w * tileSize, h * tileSize);
+        ctx.fillStyle = 'rgba(255,0,0,.3)';
 
-        map.background.forEach(function (p, i) {
-          var x = i % WIDTH;
-          var y = i / WIDTH | 0;
-          var sx = p % sheetWidth;
-          var sy = p / sheetWidth | 0;
-          ctxBg.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
-        });
+        var i, t, sx, sy;
+        for (var dy = y; dy < y + h + 1; dy++) {
+          for (var dx = x; dx < x + w + 1; dx++) {
+            i = dy * WIDTH + dx;
+            t = map.background[i];
+            sx = t % sheetWidth;
+            sy = t / sheetWidth | 0;
+            if (visible.background) ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
 
-        map.terrain.forEach(function (p, i) {
-          var x = i % WIDTH;
-          var y = i / WIDTH | 0;
-          var sx = p % sheetWidth;
-          var sy = p / sheetWidth | 0;
-          ctxTe.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
-        });
+            t = map.terrain[i];
+            sx = t % sheetWidth;
+            sy = t / sheetWidth | 0;
+            if (visible.terrain) ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
 
-        map.foreground.forEach(function (p, i) {
-          var x = i % WIDTH;
-          var y = i / WIDTH | 0;
-          var sx = p % sheetWidth;
-          var sy = p / sheetWidth | 0;
-          ctxFg.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, x * tileSize, y * tileSize, tileSize, tileSize);
-        });
+            t = map.foreground[i];
+            sx = t % sheetWidth;
+            sy = t / sheetWidth | 0;
+            if (visible.foreground) ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
 
-        ctxCo.fillStyle = 'rgba(255,0,0,.2)';
-        map.collision.forEach(function (p, i) {
-          var x = i % WIDTH;
-          var y = i / WIDTH | 0;
-          if (!p) return;
-          ctxCo.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-        });
-
+            t = map.collision[i];
+            if (visible.collision && t) ctx.fillRect(dx * tileSize, dy * tileSize, tileSize, tileSize);
+          }
+        }
       }
 
       var mapEl = document.querySelector('.map div');
-      mapEl.addEventListener('click', function (e) {
+      var sample = 0;
+      function draw(e) {
         var x = e.offsetX / tileSize / ZOOM | 0;
         var y = e.offsetY / tileSize / ZOOM | 0;
         selectedOffset = y * WIDTH + x;
-        console.log(selectedOffset);
         if (selectedLayer === 'collision') {
           map[selectedLayer][selectedOffset] = 1 - map[selectedLayer][selectedOffset];
         } else {
           map[selectedLayer][selectedOffset] = selectedTile;
         }
         save();
-        render();
+        renderRegion();
+      }
+
+      var drawing = false;
+      mapEl.addEventListener('mousemove', function (e) {
+        if (drawing) {
+          if (selectedLayer === 'collision') {
+            var x = e.offsetX / tileSize / ZOOM | 0;
+            var y = e.offsetY / tileSize / ZOOM | 0;
+            selectedOffset = y * WIDTH + x;
+            map.collision[selectedOffset] = sample;
+            save();
+            renderRegion();
+          } else {
+            draw(e);
+          }
+        }
       });
+      mapEl.addEventListener('mousedown', function (e) {
+        if (!drawing) {
+          var x = e.offsetX / tileSize / ZOOM | 0;
+          var y = e.offsetY / tileSize / ZOOM | 0;
+          selectedOffset = y * WIDTH + x;
+          sample = 1 - map.collision[selectedOffset];
+          drawing = true;
+        }
+      });
+      mapEl.addEventListener('mouseup', function (e) {
+        drawing = false;
+      });
+      mapEl.addEventListener('click', draw);
 
       var saveTimeout;
       function save() {
@@ -280,6 +309,11 @@
             selectedTile += 1;
           }
 
+          if (e.key === 'v') {
+            visible[selectedLayer] = !visible[selectedLayer];
+            renderRegion();
+          }
+
           var x = selectedTile % sheetWidth;
           var y = selectedTile / sheetWidth | 0;
           highlight.style.left = x * tileSize + tiles.offsetLeft + 'px';
@@ -292,8 +326,33 @@
         xhr.onload = init;
         xhr.open("GET", "/map");
         xhr.send();
-      }
+      };
 
+      var mapScrollEl = document.querySelector('.map');
+      var renderRegion = (function () {
+        var x, y, w, h;
+        var needsRender = true;
+        var needsPos = true;
+        function update() {
+          x = mapScrollEl.scrollLeft / tileSize / ZOOM | 0;
+          y = mapScrollEl.scrollTop / tileSize / ZOOM | 0;
+          w = mapScrollEl.offsetWidth / tileSize / ZOOM | 0;
+          h = mapScrollEl.offsetHeight / tileSize / ZOOM | 0;
+        }
+        function renderRegion (e) {
+          render(x, y, w + 2, h + 2);
+          if (!needsRender) return;
+          needsRender = false;
+          update();
+          setTimeout(function () {
+            needsRender = true;
+            update();
+            render(x, y, w + 2, h + 2);
+          }, 100);
+        }
+        return renderRegion;
+      })();
+      mapScrollEl.addEventListener('scroll', renderRegion);
 
     </script>
   </body>

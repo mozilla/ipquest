@@ -7,8 +7,7 @@ function SpriteSheet(data, tileSize) {
   var sheetHeight = data.height / tileSize | 0;
 
   this.tileCount = sheetWidth * sheetHeight;
-
-  console.log(sheetWidth, this.tileCount);
+  this.sheetWidth = sheetWidth;
 
   this.put = function(ctx, x, y, n) {
     ctx.drawImage(
