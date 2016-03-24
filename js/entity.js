@@ -25,7 +25,6 @@ function Dude(spritesheet, col) {
 }
 
 function Entity(spritesheet, config) {
-
   this.config = config;
 
   this.render = function (ctx, x, y) {

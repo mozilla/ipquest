@@ -14,5 +14,29 @@
     "lines": [
       "No. Be Gone."
     ]
+  },
+  "guard-1": {
+    "lines": [
+      "I wouldn't leave the villiage if I were you.",
+      "I heard there's trolls and other NPEs out there."
+    ],
+    "choices": [
+      ["NPEs?", "guard-2"]
+    ]
+  },
+  "guard-2": {
+    "lines": [
+      "You know, Non-Player Entities. Anyway, it's not safe to leave town alone."
+    ],
+    "choices": [
+      ["Where would I find company?", null],
+      ["I'll take my chances.", "guard-3"]
+    ]
+  },
+  "guard-3": {
+    "lines": [
+      "Your funeral."
+    ]
   }
+
 }

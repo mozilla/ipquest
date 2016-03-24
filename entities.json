@@ -3,5 +3,10 @@
     "position": 2038,
     "sprite": 5,
     "dialogue": "legion-1"
+  },
+  {
+    "position": 6409,
+    "sprite": 6,
+    "dialogue": "guard-1"
   }
 ]
