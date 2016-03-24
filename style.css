@@ -7,11 +7,55 @@
     margin: auto;
 }
 #game {
-  margin-top: 1em;
+  margin: 1em auto;
+  position: relative;
 }
 body {
     background: #444;
 }
 img {
-    display: none;
+  display: none;
+}
+.dialogue-out {
+  position: absolute;
+  font-weight: 300;
+  font-family: "Press Start 2P", monospace;
+  line-height: 1.6em;
+  font-size: 16px;
+  color: #fff;
+  display: none;
+  padding: 8px 16px;
+  background: #000;
+  width: 480px;
+  height: 8em;
+  overflow: hidden;
+  top: 16px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border: 4px solid white;
+  z-index: 1;
+}
+
+.dialogue-choices {
+  position: absolute;
+  font-weight: 300;
+  font-family: "Press Start 2P", monospace;
+  line-height: 1.6em;
+  font-size: 16px;
+  color: #fff;
+  display: none;
+  padding: 8px 16px;
+  background: #000;
+  width: 384px;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  margin: auto;
+  border: 4px solid white;
+  z-index: 1;
+}
+.dialogue-choices .highlight:before {
+  content: '•';
 }

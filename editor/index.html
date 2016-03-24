@@ -78,6 +78,9 @@
         width: 16px;
         height: 16px;
       }
+      .info {
+        font-size: .8em;
+      }
     </style>
   </head>
   <body>
@@ -92,22 +95,26 @@
           <ul class="layer">
             <li data-layer="background">
               <input type="checkbox" value="foreground" checked>
-              <label><input type="radio" checked name="layer" value="background"> BG</label>
+              <label><input type="radio" checked name="layer" value="background"> Background</label>
             </li>
             <li data-layer="terrain">
               <input type="checkbox" value="foreground" checked>
-              <label><input type="radio" name="layer" value="terrain"> TE</label>
+              <label><input type="radio" name="layer" value="terrain"> Terrain</label>
             </li>
             <li data-layer="foreground">
               <input type="checkbox" value="foreground" checked>
-              <label><input type="radio" name="layer" value="foreground"> FG</label>
+              <label><input type="radio" name="layer" value="foreground"> Foreground</label>
             </li>
             <li data-layer="collision">
               <input type="checkbox" value="foreground" checked>
-              <label><input type="radio" name="layer" value="collision"> CO</label>
+              <label><input type="radio" name="layer" value="collision"> Collision</label>
+            </li>
+            <li data-layer="trigger">
+              <input type="checkbox" value="foreground" checked>
+              <label><input type="radio" name="layer" value="trigger"> Trigger</label>
             </li>
           </ul>
-          <button>Save</button>
+          <span class="info"></span>
         </div>
         <div class="tiles">
           <div>
@@ -128,12 +135,7 @@
       var canvas = document.querySelector('.out');
       var ctx = canvas.getContext('2d');
 
-      var visible = {
-        'background': true,
-        'terrain': true,
-        'foreground': true,
-        'collision': true
-      };
+      var visibleMode = false;
 
       var selectedLayer = document.querySelector('[name="layer"][checked]').value;
       var menuEl = document.querySelector('.menu');
@@ -168,6 +170,10 @@
           map.collision = Array(size).fill(0);
         }
 
+        if (!map.trigger || map.trigger.length) {
+          map.trigger = {};
+        }
+
         WIDTH = map.width;
         HEIGHT = map.height;
 
@@ -184,7 +190,6 @@
       function render(x, y, w, h) {
         ctx.fillStyle = '#000';
         ctx.fillRect(x * tileSize, y * tileSize, w * tileSize, h * tileSize);
-        ctx.fillStyle = 'rgba(255,0,0,.3)';
 
         var i, t, sx, sy;
         for (var dy = y; dy < y + h + 1; dy++) {
@@ -193,32 +198,67 @@
             t = map.background[i];
             sx = t % sheetWidth;
             sy = t / sheetWidth | 0;
-            if (visible.background) ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
+            if (!visibleMode || selectedLayer === 'background') {
+              ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
+            }
 
             t = map.terrain[i];
             sx = t % sheetWidth;
             sy = t / sheetWidth | 0;
-            if (visible.terrain) ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
+            if (!visibleMode || selectedLayer === 'terrain') {
+              ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
+            }
 
             t = map.foreground[i];
             sx = t % sheetWidth;
             sy = t / sheetWidth | 0;
-            if (visible.foreground) ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
+            if (!visibleMode || selectedLayer === 'foreground') {
+              ctx.drawImage(tiles, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
+            }
 
             t = map.collision[i];
-            if (visible.collision && t) ctx.fillRect(dx * tileSize, dy * tileSize, tileSize, tileSize);
+            if (!visibleMode || selectedLayer === 'collision') {
+              ctx.fillStyle = 'rgba(255,0,0,.3)';
+              if (t) ctx.fillRect(dx * tileSize, dy * tileSize, tileSize, tileSize);
+            }
+
+            t = map.trigger[i];
+            if (!visibleMode || selectedLayer === 'trigger') {
+              ctx.fillStyle = 'rgba(0,0,255,.3)';
+              if (t) ctx.fillRect(dx * tileSize, dy * tileSize, tileSize, tileSize);
+            }
           }
         }
       }
 
       var mapEl = document.querySelector('.map div');
       var sample = 0;
+      var triggerSetWaiting = false;
       function draw(e) {
         var x = e.offsetX / tileSize / ZOOM | 0;
         var y = e.offsetY / tileSize / ZOOM | 0;
         selectedOffset = y * WIDTH + x;
         if (selectedLayer === 'collision') {
-          map[selectedLayer][selectedOffset] = 1 - map[selectedLayer][selectedOffset];
+          map.collision[selectedOffset] = 1 - map.collision[selectedOffset];
+        } else if (selectedLayer === 'trigger') {
+          if (!triggerSetWaiting && map.trigger[selectedOffset]) {
+            delete map.trigger[selectedOffset];
+          } else {
+            if (triggerSetWaiting) {
+              if (!triggerSetWaiting.destination) {
+                triggerSetWaiting.destination = selectedOffset;
+              } else if (!triggerSetWaiting.center) {
+                triggerSetWaiting.center = selectedOffset;
+                triggerSetWaiting = false;
+              } else {
+                // this shouldn't happen but meh
+                triggerSetWaiting = false;
+              }
+            } else {
+              map.trigger[selectedOffset] = {};
+              triggerSetWaiting = map.trigger[selectedOffset];
+            }
+          }
         } else {
           map[selectedLayer][selectedOffset] = selectedTile;
         }
@@ -227,15 +267,19 @@
       }
 
       var drawing = false;
+      var debugEl = document.querySelector('.info');
       mapEl.addEventListener('mousemove', function (e) {
+        var x = e.offsetX / tileSize / ZOOM | 0;
+        var y = e.offsetY / tileSize / ZOOM | 0;
+        var selectedOffset = y * WIDTH + x;
+        debugEl.innerHTML = 'x: ' + x + " y: " + y + " pos: " + selectedOffset;
         if (drawing) {
           if (selectedLayer === 'collision') {
-            var x = e.offsetX / tileSize / ZOOM | 0;
-            var y = e.offsetY / tileSize / ZOOM | 0;
-            selectedOffset = y * WIDTH + x;
             map.collision[selectedOffset] = sample;
             save();
             renderRegion();
+          } else if (selectedLayer === 'trigger') {
+            return;
           } else {
             draw(e);
           }
@@ -295,6 +339,10 @@
             document.querySelector('[name="layer"][value="collision"]').checked = true;
             selectedLayer = 'collision';
           }
+          if (e.key === '5') {
+            document.querySelector('[name="layer"][value="trigger"]').checked = true;
+            selectedLayer = 'trigger';
+          }
 
           if (e.key === 'w') {
             selectedTile -= sheetWidth;
@@ -310,7 +358,7 @@
           }
 
           if (e.key === 'v') {
-            visible[selectedLayer] = !visible[selectedLayer];
+            visibleMode = !visibleMode;
             renderRegion();
           }
 

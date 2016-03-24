@@ -23,3 +23,12 @@ function Dude(spritesheet, col) {
     spritesheet.put(ctx, x, y, idx);
   }
 }
+
+function Entity(spritesheet, config) {
+
+  this.config = config;
+
+  this.render = function (ctx, x, y) {
+    spritesheet.put(ctx, x, y, config.sprite);
+  }
+}

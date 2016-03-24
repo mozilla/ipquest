@@ -10,7 +10,8 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
         backgroundContext = backgroundCanvas.getContext('2d'),
         foregroundCanvas = document.createElement('canvas'),
         foregroundContext = foregroundCanvas.getContext('2d'),
-        shiftX, shiftY;
+        shiftX, shiftY,
+        entities = {};
 
     backgroundCanvas.width = viewWidth;
     backgroundCanvas.height = viewHeight;
@@ -21,9 +22,34 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
         viewY = 0;
 
     this.test = function test(x, y) {
-      var bx = (viewX + x) / tileSize | 0;
-      var by = (viewY + y) / tileSize | 0;
+      var bx = x / tileSize | 0;
+      var by = y / tileSize | 0;
       return !map.collision[by * width + bx];
+    };
+
+    this.viewX = function () {
+      return viewX;
+    };
+
+    this.viewY = function () {
+      return viewY;
+    };
+
+    this.getView = function () {
+      return {
+        x: viewX,
+        y: viewY,
+        w: viewWidth,
+        h: viewHeight
+      };
+    }
+
+    this.addEntity = function (entity) {
+      entities[entity.config.position] = entity;
+      map.collision[entity.config.position] = 1;
+      map.trigger[entity.config.position + width] = {
+        dialogue: entity.config.dialogue
+      };
     };
 
     this.pan = function(dx, dy) {
@@ -35,6 +61,39 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
         return newX === viewX && newY === viewY;
     };
 
+    this.centerTo = function(x, y) {
+      if (!y) {
+        y = x / width | 0;
+        x = x % width;
+      }
+      var newX = x * tileSize - viewWidth / 2 + 8;
+      var newY = y * tileSize - viewHeight / 2 + 8;
+      viewX = Math.max(0,Math.min(newX, maxViewX));
+      viewY = Math.max(0,Math.min(newY, maxViewY));
+      this.render();
+      return this.getView();
+    };
+
+    this.toCoords = function (n) {
+      return {
+        x: (n % width) * tileSize,
+        y: (n / width | 0) * tileSize
+      };
+    };
+
+    this.getTrigger = function (x, y, w, h) {
+      var mapX = x / tileSize | 0;
+      var mapY = y / tileSize | 0;
+      var tileX = mapX * tileSize;
+      var tileY = mapY * tileSize;
+      var pos = mapY * width + mapX;
+      if (tileX <= x && x + w < tileX + tileSize && tileY <= y && y + h < tileY + tileSize) {
+        if (map.trigger[pos]) {
+          return map.trigger[pos];
+        }
+      }
+    }
+
     this.getBGCanvas = function() {
         return backgroundCanvas;
     };
@@ -42,13 +101,6 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
     this.getFGCanvas = function() {
         return foregroundCanvas;
     };
-
-    this.getMapAtCursor = function (x, y) {
-      var mx = (viewX + x) / tileSize | 0,
-          my = (viewY + y) / tileSize | 0,
-          idx = my * width + mx;
-      return map[idx];
-    }
 
     this.render = function() {
       this._render();
@@ -75,6 +127,10 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
                                 shiftX + (x * tileSize),
                                 shiftY + (y * tileSize),
                                 mapIndex);
+                var entity = entities[y * width + x + gridY * width + gridX];
+                if (entity) {
+                  entity.render(backgroundContext, shiftX + x * tileSize, shiftY + y * tileSize);
+                }
                 mapIndex = map.foreground[(y * width + x + gridY * width + gridX)];
                 spriteSheet.put(foregroundContext,
                                 shiftX + (x * tileSize),

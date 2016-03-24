@@ -6,6 +6,7 @@
     running = false,
     kb = new KeyboardControls(),
     buffer, boardCanvas, context, outCtx,
+    dialogue,
     board,
     viewX = 0,
     viewY = 0,
@@ -25,6 +26,9 @@
       };
   })();
 
+  var lastTrigger = 0;
+  var leftTrigger = true;
+
   function tick() {
     var ox = x;
     var oy = y;
@@ -32,6 +36,7 @@
     var d = 2;
     var walk = 0;
     var dir = 0;
+    var view = board.getView();
 
     dude.walk(0);
 
@@ -64,26 +69,41 @@
       }
     }
 
-    if (x + HORIZON + 16 > WIDTH) {
-      if (board.pan(d, 0)) {
-        x = WIDTH - HORIZON - 16;
+    // This is a hack so some interiors and dungeons don't pan.
+    if (x < 192 * 16) {
+      if (x > board.viewX() + WIDTH - HORIZON - 16) {
+        board.pan(d, 0);
+      }
+      if (y > board.viewY() + HEIGHT - HORIZON - 16) {
+        board.pan(0, d);
+      }
+      if (x < board.viewX() + HORIZON) {
+        board.pan(-d, 0);
+      }
+      if (y < board.viewY() + HORIZON) {
+        board.pan(0, -d);
       }
     }
-    if (y + HORIZON + 16 > HEIGHT) {
-      if (board.pan(0, d)) {
-        y = HEIGHT - HORIZON - 16;
+
+    var trigger = board.getTrigger(x + 3, y + 8, 9, 7);
+    if (trigger && (trigger !== lastTrigger || leftTrigger) && leftTrigger) {
+      if (trigger.destination) {
+        board.centerTo(trigger.center);
+        var pos = board.toCoords(trigger.destination);
+        x = pos.x;
+        y = pos.y;
       }
-    }
-    if (x < HORIZON) {
-      if (board.pan(-d, 0)) {
-        x = HORIZON;
+      if (trigger.dialogue) {
+        stop();
+        dialogue.chat(trigger.dialogue, start);
       }
+      lastTrigger = trigger;
+      leftTrigger = false;
     }
-    if (y < HORIZON) {
-      if (board.pan(0, -d)) {
-        y = HORIZON;
-      }
+    if (!trigger) {
+      leftTrigger = true;
     }
+
     lastTick = tick;
   }
 
@@ -124,7 +144,8 @@
   function render() {
     context.fillRect(0,0,WIDTH*SCALE,HEIGHT*SCALE);
     context.drawImage(board.getBGCanvas(), 0, 0);
-    dude.render(context, x, y);
+    var view = board.getView();
+    dude.render(context, x - view.x, y - view.y);
     context.drawImage(board.getFGCanvas(), 0, 0);
     outCtx.drawImage(buffer, 0, 0);
   }
@@ -148,15 +169,28 @@
     chars = new SpriteSheet(Loader.get('characters'), 16);
     dude = new Dude(chars, 0);
 
+    dialogue = new Dialogue(Loader.get('dialogue'), WIDTH, HEIGHT);
+    // setTimeout(function () {
+    //   stop();
+    //   dialogue.chat('legion-1', start);
+    // }, 3000);
+
     var map = Loader.get('map');
 
     board = new Screen(map, 16, WIDTH, HEIGHT, sheet);
+
+    Loader.get('entities').forEach(function (e) {
+      board.addEntity(new Entity(chars, e));
+    });
 
     context = buffer.getContext('2d');
     context.mozImageSmoothingEnabled = false;
     context.scale(SCALE, SCALE);
 
-    document.querySelector('#game').appendChild(canvas);
+    var gameEl = document.querySelector('#game');
+    game.appendChild(canvas);
+    game.style.width = SCALE * WIDTH + 'px';
+    game.style.height = SCALE * HEIGHT + 'px';
 
     window.map = map;
     start();
@@ -178,7 +212,17 @@
         name: 'map',
         type: 'json',
         url: 'map.json'
+      },
+      {
+        name: 'dialogue',
+        type: 'json',
+        url: 'dialogue.json'
+      },
+      {
+        name: 'entities',
+        type: 'json',
+        url: 'entities.json'
       }
-    ]).then(init).catch(console.error.bind(console));
+    ], console.log.bind(console)).then(init).catch(console.error.bind(console));
   });
 })();

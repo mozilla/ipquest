@@ -1,4 +1,20 @@
 var Loader = (function () {
+
+  function progressPromise(promises, tickCallback) {
+    var len = promises.length;
+    var progress = 0;
+
+    function tick(promise) {
+      promise.then(function () {
+        progress++;
+        tickCallback(progress, len);
+      });
+      return promise;
+    }
+
+    return Promise.all(promises.map(tick));
+  }
+
   function Loader() {
     this.assets = {};
   }
@@ -59,7 +75,7 @@ var Loader = (function () {
     });
   };
 
-  Loader.prototype.load = function (assets) {
+  Loader.prototype.load = function (assets, tickCb) {
     var self = this;
     var reqs = assets.map(function (asset) {
       if (asset.type === 'image') {
@@ -70,7 +86,7 @@ var Loader = (function () {
       }
       return self.loadText(asset.name, asset.url);
     });
-    return Promise.all(reqs);
+    return progressPromise(reqs, tickCb);
   };
 
   Loader.prototype.get = function (name) {

@@ -1,0 +1,18 @@
+{
+  "legion-1": {
+    "lines": [
+      "DIFFIE: We have only one choice.",
+      "DIFFIE: The Random Integer Number Generator must be...",
+      "DIFFIE: ...invalidated."
+    ],
+    "choices": [
+      ["Could you repeat that?", "legion-2"],
+      ["Neat-o. Goodbye.", null]
+    ]
+  },
+  "legion-2": {
+    "lines": [
+      "No. Be Gone."
+    ]
+  }
+}
