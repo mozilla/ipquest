@@ -1,0 +1,30 @@
+[legion-1]
+
+We have only one choice.
+The Random Integer Number Generator must be...
+...invalidated.
+
+* Could you repeat that? [legion-2]
+* Neat-o. Goodbye. [END]
+
+[legion-2]
+
+No. Be Gone.
+
+[guard-1]
+
+I wouldn't leave the village if I were you.
+I heard there's trolls and other NPEs out there.
+
+* NPEs? [guard-2]
+
+[guard-2]
+
+You know, Non-Player Entities. Anyway, it's not safe to leave town alone.
+
+* Where would I find company? [END]
+* I'll take my chances. [guard-3]
+
+[guard-3]
+
+Your funeral.

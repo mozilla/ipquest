@@ -215,8 +215,8 @@
       },
       {
         name: 'dialogue',
-        type: 'json',
-        url: 'dialogue.json'
+        type: 'dlg',
+        url: 'tree.dlg'
       },
       {
         name: 'entities',

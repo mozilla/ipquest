@@ -7,6 +7,52 @@ function Dialogue(tree, width, height) {
   var self = this;
   this.output = output;
 
+  tree = parse(tree);
+
+  function parse(data) {
+    var lines = data.split('\n');
+    var obj = {
+    };
+    var curChat;
+
+    lines.forEach(function (line, n) {
+      if (!line) return;
+      if (line[0] === '[') {
+        var parts = line.match(/\[([\w-]+)\]/);
+        if (!parts) {
+          throw "failed to parse dialogue on line " + n;
+        }
+        curChat = {
+          lines: []
+        };
+        obj[parts[1]] = curChat;
+        return;
+      }
+      if (line[0].match(/\s/)) {
+        return;
+      }
+      if (line[0] === '*') {
+        var parts = line.match(/\* ([^\[]+)\[([^\]]+)\]/);
+        if (!parts) {
+          throw "failed to parse dialogue on line " + n;
+        }
+        var text = parts[1];
+        var outcome = parts[2];
+        if (!obj.choices) {
+          curChat.choices = [];
+        }
+        if (outcome === 'END') {
+          outcome = null;
+        }
+        curChat.choices.push([text, outcome]);
+        return
+      }
+      curChat.lines.push(line);
+    });
+
+    return obj;
+  }
+
   this.open = function () {
     output.style.display = 'block';
   };
