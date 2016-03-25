@@ -43,7 +43,7 @@ var Loader = (function () {
     var self = this;
     return new Promise(function (resolve, reject) {
       var xhr = new XMLHttpRequest();
-      xhr.open('get', url);
+      xhr.open('get', url + '?' + Date.now());
       xhr.onload = function () {
         try {
           self.assets[name] = this.responseText;

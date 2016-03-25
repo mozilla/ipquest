@@ -14,15 +14,18 @@ ELDER POSA: ...invalidated.
 DWARF: Then what are we waiting for?
 ELDER POSA: The RING cannot be invalidated, by any procedure that we here possess.
 ELDER POSA: The RING was made in the fires of Mt. Pto. Only there can it be unmade.
-ELDER POSA: It must be taken deep into Ptab and undergo Inter Partes Review, before it can be cast back into the firey chasm from whence it came.
+ELDER POSA: It must be taken deep into Ptab and undergo Inter Partes Review,
+ELDER POSA: before it can be cast back into the firey chasm from whence it came.
 
 * They're getting to the good part. [RING-2]
 * On second thought, I should go. [END]
 
 [RING-2]
 
-BORED O'MERE: One does not simply walk into Ptab and begin Inter Partes Review. Its black gates are guarded by more than just trolls.
-BORED O'MERE: There is evil there that does not sleep and the great eye is ever watchful. Tis a barren wasteland, riddled with fire and ash and dust.
+BORED O'MERE: One does not simply walk into Ptab and begin Inter Partes Review.
+BORED O'MERE: Its black gates are guarded by more than just trolls.
+BORED O'MERE: There is evil there that does not sleep and the great eye is ever watchful.
+BORED O'MERE: Tis a barren wasteland, riddled with fire and ash and dust.
 BORED O'MERE: The very air you breathe is a poisonous fume. Not with ten thousand attorneys could you do this. It is folly.
 
 * (Interrupt) Excuse me, but I am also on a quest to invalidate the RING. [RING-3]
@@ -54,7 +57,7 @@ ELDER POSA: Well, see you all all the Patent Office. Good luck!
 * You've got to be kidding me... [END]
 
   ## END COMMON INTEREST OF THE RING ##
-  
+
   ## TOWN GUARD DIALOGUE ##
 [guard-1]
 
@@ -74,7 +77,7 @@ You know, Non-Player Entities. Anyway, it's not safe to leave town alone.
 
 Your funeral.
   ## END TOWN GUARD DIALOGUE ##
-  
+
   ## SHOPKEEPER SEQUENCE 1 ##
 
 [SHOP1-start]
@@ -94,26 +97,29 @@ Equip Rusty Dagger?
 * No [SHOP1-list1]
 
 [SHOP1-Rusty_Dagger_Equip]
-As you pick up the dagger you notice something etched on the handle...
-"NO EXPRESS OR IMPLIED LICENSES TO ANY PATENT CLAIMS, including without limitation the patents of BigCo, ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate patent licenses."
+You look sharp holding that dagger. Get it? Har Har!
+* Wait, what's this on the handle? [SHOP1-License]
+
+[SHOP1-License]
+
+"NO EXPRESS OR IMPLIED LICENSES TO ANY CLAIMS, including without limitation the patents of BigCo,"
+"ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate licenses."
 * What the heck? I need a separate license?! [SHOP1-list2]
-* I'm just going to ignore this for now. [SHOP1-list2]
+* I'm just going to ignore this for now. [END->SHOP1-list2]
 
 [SHOP1-list2]
 MERCHANT: Oh yeah, I almost forgot!
 * Rusty Dagger - SOLD OUT (1 G) [SHOP1-list2]
 * Rusty Dagger License (99999 G) [SHOP1-Rusty_Dagger_License]
-* Leave [END]
-
-  // After this "Leave" replace future initiated dialogue with [SHOP2-list1]
+* Leave [END->SHOP2-list1]
 
 [SHOP1-Rusty_Dagger_License]
 MERCHANT: You seem to be a little short there, buddy.
 * Guess I'll come back when I've earned some more gold. [SHOP1-list2]
 
   ## END SHOPKEEPER SEQUENCE 1 ##
-  
-  
+
+
   ## SHOPEKEEPER SEQUENCE 2 ##
 
 [SHOP2-list1]
@@ -136,11 +142,10 @@ The Gilded Bow seems almost perfectly weighted for your hands. You feel ready to
 
 [SHOP2-Gilded_Bow_Shoot]
 As you prepare to draw back, you notice something etched on the bow...
-"Congratulations on purchasing your new, fully licensed, Gilded Bow! Note: license for use of Arrows not included. You may use your Gilded Bow only as authorized by appropriate patent licenses."
+"Congratulations on purchasing your new, fully licensed, Gilded Bow! Note: license for use of Arrows not included.
+You may use your Gilded Bow only as authorized by appropriate ammunition licenses."
 
-* Not again...[SHOP2-list2]
-
-  // After this, replace future initiated dialogue with [SHOP2-list2]
+* Not again...[END->SHOP2-list2]
 
 [SHOP2-list2]
 MERCHANT: Hey, welcome back! I got some new items in stock!
@@ -197,7 +202,7 @@ SPOONY BARD: "Work together?" I have no idea what you're talking about.
 [BARD-END]
 SPOONY BARD: See ya and good luck!
 
-* Leave [END]
+* Bye. [END->BARD-END]
 
   // After this point, replace future initiated dialogue with [BARD-END]
 
@@ -206,23 +211,66 @@ SPOONY BARD: See ya and good luck!
   ## Random NPC Dialogue re: Bard ##
 
 [NPC0]
-"If only we had a way to transmit AND receive. Alas..."
+If only we had a way to transmit AND receive. Alas...
 * OK [END]
 
 [NPC1]
-"Did you hear about the bard?!"
+Did you hear about the bard?!
 * OK [END]
 
 [NPC2]
-"I heard the bard discovered something new!
+I heard the bard discovered something new!
 * This is getting out of hand. [END]
 
-[NPC 3]
-"Can you believe the bard discovered a Crystal of Transmitting AND Receiving?"
+[NPC3]
+Can you believe the bard discovered a Crystal of Transmitting AND Receiving?
 * Gimme a break. [END]
 
 [NPC4]
-"That bard is a genius. He's done it again!"
+That bard is a genius. He's done it again!
 * ... [END]
 
   ## end of random npc dialogue re: Bard ##
+
+[OLDMAN-1]
+
+Ah, you've come!
+
+* You were expecting me? [OLDMAN-2]
+
+[OLDMAN-2]
+
+Since before you felt the call...
+That feeling you were meant to do great things, I know it's in your heart...
+The dreams? More than just dreams...
+
+* You-you mean? [OLDMAN-3]
+
+[OLDMAN-3]
+
+Yes, child. You are the chosen one.
+
+* I am? [OLDMAN-4]
+
+[OLDMAN-4]
+
+Destined from birth to save our land.
+
+* So now what? [OLDMAN-5]
+
+[OLDMAN-5]
+
+Born of brave blood and pure heart.
+Noble of spirit, steady of hand.
+
+* uh huh. [OLDMAN-6]
+
+[OLDMAN-6]
+
+From the humblest beginnings, sent for a mighty deed!
+
+* Can we, uh, cut to the chase? [OLDMAN-7]
+
+[OLDMAN-7]
+
+Patience.

@@ -43,9 +43,13 @@ function Dialogue(tree, width, height) {
         }
         if (outcome === 'END') {
           outcome = null;
+        } else if (outcome.match(/END->(.+)/)) {
+          var parts = outcome.match(/END->(.+)/);
+          curChat.choices.push([text, null, parts[1]]);
+          return;
         }
         curChat.choices.push([text, outcome]);
-        return
+        return;
       }
       curChat.lines.push(line);
     });
@@ -130,7 +134,7 @@ function Dialogue(tree, width, height) {
           chat(choices[selected][1], cb);
         } else {
           self.close();
-          cb();
+          cb(choices[selected][2]);
         }
       }
     }

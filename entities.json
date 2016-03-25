@@ -1,12 +1,22 @@
 [
   {
-    "position": 2038,
-    "sprite": 5,
-    "dialogue": "legion-1"
+    "position": 1781,
+    "sprite": 1,
+    "dialogue": "SHOP1-start"
   },
   {
     "position": 6409,
     "sprite": 6,
     "dialogue": "guard-1"
+  },
+  {
+    "position": 10797,
+    "sprite": 4,
+    "dialogue": "BARD-start"
+  },
+  {
+    "position": 4852,
+    "sprite": 5,
+    "dialogue": "OLDMAN-1"
   }
 ]

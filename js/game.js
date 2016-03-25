@@ -95,7 +95,13 @@
       }
       if (trigger.dialogue) {
         stop();
-        dialogue.chat(trigger.dialogue, start);
+        dialogue.chat(trigger.dialogue, function (change) {
+          console.log(change);
+          if (change) {
+            trigger.dialogue = change;
+          }
+          start();
+        });
       }
       lastTrigger = trigger;
       leftTrigger = false;
