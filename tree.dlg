@@ -1,3 +1,5 @@
+  ## COMMON INTEREST OF THE RING ##
+
 [RING-start]
 
 ELDER POSA: We have only one choice.
@@ -51,7 +53,9 @@ ELDER POSA: Well, see you all all the Patent Office. Good luck!
 
 * You've got to be kidding me... [END]
 
-
+  ## END COMMON INTEREST OF THE RING ##
+  
+  ## TOWN GUARD DIALOGUE ##
 [guard-1]
 
 I wouldn't leave the village if I were you.
@@ -69,3 +73,85 @@ You know, Non-Player Entities. Anyway, it's not safe to leave town alone.
 [guard-3]
 
 Your funeral.
+  ## END TOWN GUARD DIALOGUE ##
+  
+  ## SHOPKEEPER SEQUENCE 1 ##
+
+[SHOP1-start]
+MERCHANT: I hear you're in need of equipment! Want to see what I've got for sale?
+* Yes [SHOP1-list1]
+* No [END]
+
+[SHOP1-list1]
+MERCHANT: I'm afraid I don't have much in stock at the moment.
+* Rusty Dagger (1 G)[SHOP1-Rusty_Dagger]
+* Leave [END]
+
+[SHOP1-Rusty_Dagger]
+You received: 1 Rusty Dagger
+Equip Rusty Dagger?
+* Yes [SHOP1-Rusty_Dagger_Equip]
+* No [SHOP1-list1]
+
+[SHOP1-Rusty_Dagger_Equip]
+As you pick up the dagger you notice something etched on the handle...
+"NO EXPRESS OR IMPLIED LICENSES TO ANY PATENT CLAIMS, including without limitation the patents of BigCo, ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate patent licenses."
+* What the heck? I need a separate license?! [SHOP1-list2]
+* I'm just going to ignore this for now. [SHOP1-list2]
+
+[SHOP1-list2]
+MERCHANT: Oh yeah, I almost forgot!
+* Rusty Dagger - SOLD OUT (1 G) [SHOP1-list2]
+* Rusty Dagger License (99999 G) [SHOP1-Rusty_Dagger_License]
+* Leave [END]
+
+[SHOP1-Rusty_Dagger_License]
+MERCHANT: You seem to be a little short there, buddy.
+* Guess I'll come back when I've earned some more gold. [SHOP1-list2]
+
+  ## END SHOPKEEPER SEQUENCE 1 ##
+  
+  
+  ## SHOPEKEEPER SEQUENCE 2 ##
+
+[SHOP2-list1]
+MERCHANT: Hey, welcome back! I got some new items in stock!
+* Rusty Dagger - SOLD OUT (1 G) [SHOP2-list1]
+* Rusty Dagger License (99999 G) [SHOP2-License1]
+* Fully Licensed Gilded Bow (5 G) [SHOP2-Gilded_Bow]
+* Leave [END]
+
+[SHOP2-Gilded_Bow]
+MERCHANT: Excellent choice! Won't do you much good without something to shoot, though. Here, give it a 'shot'! Hahaha!
+You received: 1 Fully Licensed Gilded Bow and 99 Steel Arrows
+Equip Fully Licensed Gilded Bow?
+* Yes [SHOP2-Gilded_Bow_Equip]
+
+[SHOP2-Gilded_Bow_Equip]
+The Gilded Bow seems almost perfectly weighted for your hands. You feel ready to continue your quest!
+
+* Try the bow out on the target [SHOP2-Gilded_Bow_Shoot]
+
+[SHOP2-Gilded_Bow_Shoot]
+As you prepare to draw back, you notice something etched on the bow...
+"Congratulations on purchasing your new, fully licensed, Gilded Bow! Note: license for use of Arrows not included. You may use your Gilded Bow only as authorized by appropriate patent licenses."
+
+* Not again...[SHOP2-list2]
+
+[SHOP2-list2]
+MERCHANT: Hey, welcome back! I got some new items in stock!
+* Rusty Dagger - SOLD OUT (1 G) [SHOP2-list2]
+* Rusty Dagger License (99999 G) [SHOP2-License2]
+* Fully Licensed Gilded Bow - SOLD OUT (5 G) [SHOP2-list2]
+* Steel Arrow License (99999 G per arrow) [SHOP2-License2]
+* Leave [END]
+
+[SHOP2-License1]
+MERCHANT: You seem to be a little short there, buddy.
+* Guess I'll come back when I've earned some more gold. [SHOP2-list1]
+
+[SHOP2-License2]
+MERCHANT: Ha! You're kidding, right?
+* Guess I'll come back when I've earned some more gold. [SHOP2-list2]
+
+  ## END SHOPKEEPER SEQUENCE 2 ##
