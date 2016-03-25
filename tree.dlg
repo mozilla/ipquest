@@ -1,15 +1,56 @@
-[legion-1]
+[RING-start]
 
-We have only one choice.
-The Random Integer Number Generator must be...
-...invalidated.
+ELDER POSA: We have only one choice.
+ELDER POSA: The Random Integer Number Generator must be...
+ELDER POSA: ...invalidated.
 
-* Could you repeat that? [legion-2]
-* Neat-o. Goodbye. [END]
+* Stay awhile, and listen. [RING-1]
+* Ain't got time for that! [END]
 
-[legion-2]
+[RING-1]
 
-No. Be Gone.
+DWARF: Then what are we waiting for?
+ELDER POSA: The RING cannot be invalidated, by any procedure that we here possess.
+ELDER POSA: The RING was made in the fires of Mt. Pto. Only there can it be unmade.
+ELDER POSA: It must be taken deep into Ptab and undergo Inter Partes Review, before it can be cast back into the firey chasm from whence it came.
+
+* They're getting to the good part. [RING-2]
+* On second thought, I should go. [END]
+
+[RING-2]
+
+BORED O'MERE: One does not simply walk into Ptab and begin Inter Partes Review. Its black gates are guarded by more than just trolls.
+BORED O'MERE: There is evil there that does not sleep and the great eye is ever watchful. Tis a barren wasteland, riddled with fire and ash and dust.
+BORED O'MERE: The very air you breathe is a poisonous fume. Not with ten thousand attorneys could you do this. It is folly.
+
+* (Interrupt) Excuse me, but I am also on a quest to invalidate the RING. [RING-3]
+* This is getting way too complicated. [END]
+
+[RING-3]
+
+MERLIN: Your bravery is admirable. I will help you bear this burden of proof. We shall form a Common Interest of the RING.
+FOGHORN: The Common Interest has my sword.
+LEGOLASS: And the Common Interest has my bow.
+DWARF: And my axe!!
+
+* Awesome, count me in! [RING-join]
+
+[RING-join]
+
+MERLIN: Wait, aren't you going to contribute anything?
+MERLIN: ...
+FOGHORN: ...
+ELDER POSA: ...
+ARAGORN: Well this is awkward. We kind of imagined that everyone in the Common Interest would contribute something. I'm afraid we'll have to go our separate ways.
+
+* Oh... [RING-leave]
+
+[RING-leave]
+
+ELDER POSA: Well, see you all all the Patent Office. Good luck!
+
+* You've got to be kidding me... [END]
+
 
 [guard-1]
 
