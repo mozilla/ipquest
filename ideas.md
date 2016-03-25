@@ -72,7 +72,7 @@
 > Rusty Dagger / Cancel
 
 - Try to equip the weapon via inventory
-- Either when equipping or when trying to use it, receive an error message [see below under abilities/spells]
+- Either when equipping or when trying to use it, receive an error message
 - Fine print for weapon:
 
 > NO EXPRESS OR IMPLIED LICENSES TO ANY PATENT CLAIMS, including without limitation the patents of BigCo, ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate patent licenses.
@@ -107,9 +107,39 @@
 - Settle (escapes combat, but causes you to drop gold)
 - File a Motion (just do some damage? maybe a 'confusion' type effect)
 - Enjoin (prevents you from using that ability/item for the rest of the fight)
+- Serve Discovery (should always fail when the player uses it)
 
-## Other party members
+## Spoony Bard
+- Discover an initial critical piece of the quest (e.g., crystal of transmitting)
 - Find someone who fits party member stereotype (spoony bard!)
-- Talk to him/her and discover he has one of the quest items you are looking for
-- You both get really excited
-- He just ends up leaving you hanging ("well... good luck!")
+- Talk to him/her and discover he is also on the same quest, and has another quest item (e.g., crystal of receiving
+
+> (BARD): Wow, is that a Crystal of Transmitting? How did you get one of those?
+> I discovered it myself / Leave
+>
+> (BARD): You know, that would go perfect with my Crystal of Receiving! Mind if I take a look?
+> Sure, why not! / No thanks, I'll go it alone. (Leave)
+>
+> (Player): Sure, why not!
+> (BARD): Thanks! Took me forever to find this Crystal of Transmitting.
+> What?? That's my discovery! / Well, I suppose we could work together. / (Leave)
+>
+> (Player): What?? That's my discovery!
+> (BARD): I have no idea what you're talking about. I discovered this!
+> Well, I suppose we could work together. / (Leave)
+>
+> (Player): Well, I suppose we could work together.
+> (BARD): Team up? I have no idea what you're talking about.
+> (Leave)
+>
+> (Player): (Leave)
+> (BARD): Good luck!
+
+- over time, random people in town can go from wishing they had transmit/receiving, to talking more and more about the Bard and "his" discovery.
+
+> NPC 0: If only we had a way to transmit AND receive. Alas...
+> NPC 1: Did you hear about the bard?!
+> NPC 2: I heard the bard discovered something new!
+> NPC 3: Can you believe the bard discovered a Crystal of Transmitting AND Receiving?
+> NPC 4: That bard is a genius. He's done it again!
+
