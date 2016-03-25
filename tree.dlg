@@ -155,3 +155,44 @@ MERCHANT: Ha! You're kidding, right?
 * Guess I'll come back when I've earned some more gold. [SHOP2-list2]
 
   ## END SHOPKEEPER SEQUENCE 2 ##
+
+
+  ## SPOONY BARD ##
+
+[BARD-start]
+SPOONY BARD: Wow, is that a Crystal of Transmitting? How did you get one of those?
+
+* I found it myself. [BARD-1]
+* None of your business! [END]
+
+[BARD-1]
+SPOONY BARD: You know, that Crystal of Transmitting would go perfectly with my Crystal of Receiving! Mind if I take a look?
+
+* Sure, why not! [BARD-2]
+* No thanks, I'll go it alone. [BARD-END]
+
+[BARD-2]
+SPOONY BARD: Thanks!!!
+SPOONY BARD: ...
+SPOONY BARD: Phew, took me forever to find this Crystal of Transmitting!
+
+* What?! I'm the one who found the Crystal of Transmitting! [BARD-3]
+* Well... I suppose we could work together. [BARD-4]
+
+[BARD-3]
+SPOONY BARD: I have no idea what you're talking about. I discovered this Crystal of Transmitting!
+
+* Well, I suppose we could work together. [BARD-4]
+* This is outrageous! [BARD-END]
+
+[BARD-4]
+SPOONY BARD: "Work together?" I have no idea what you're talking about.
+
+* This is outrageous! [BARD-END]
+
+[BARD-END]
+SPOONY BARD: See ya and good luck!
+
+* Leave [END]
+
+  ## END OF SPOONY BARD ##
