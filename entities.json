@@ -23,5 +23,10 @@
     "position": 7922,
     "sprite": 12,
     "dialogue": "TROLL"
+  },
+  {
+    "position": 13874,
+    "sprite": 3,
+    "dialogue": "NPC5"
   }
 ]
