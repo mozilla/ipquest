@@ -28,6 +28,10 @@ function Entity(spritesheet, config) {
   this.config = config;
 
   this.render = function (ctx, x, y) {
-    spritesheet.put(ctx, x, y, config.sprite);
+    // Animation!
+    if (config.sprite instanceof Array) {
+    } else {
+      spritesheet.put(ctx, x, y, config.sprite);
+    }
   }
 }

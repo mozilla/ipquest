@@ -136,6 +136,7 @@
       var ctx = canvas.getContext('2d');
 
       var visibleMode = false;
+      var paintMode = false;
 
       var selectedLayer = document.querySelector('[name="layer"][checked]').value;
       var menuEl = document.querySelector('.menu');
@@ -160,13 +161,13 @@
         } catch (e) {
           console.log('invalid map');
           map = {
-            width: 32,
-            height: 32,
+            width: 256,
+            height: 256,
           };
           var size = map.width * map.height;
-          map.background = Array(size).fill(154);
-          map.terrain = Array(size).fill(51);
-          map.foreground = Array(size).fill(51);
+          map.background = Array(size).fill(0);
+          map.terrain = Array(size).fill(0);
+          map.foreground = Array(size).fill(0);
           map.collision = Array(size).fill(0);
         }
 
@@ -233,6 +234,7 @@
 
       var mapEl = document.querySelector('.map div');
       var sample = 0;
+      var startX, startY;
       var triggerSetWaiting = false;
       function draw(e) {
         var x = e.offsetX / tileSize / ZOOM | 0;
@@ -260,7 +262,12 @@
             }
           }
         } else {
-          map[selectedLayer][selectedOffset] = selectedTile;
+          if (paintMode) {
+            var newTile = selectedTile + (x - startX) + (y- startY) * 20;
+            map[selectedLayer][selectedOffset] = newTile;
+          } else {
+            map[selectedLayer][selectedOffset] = selectedTile;
+          }
         }
         save();
         renderRegion();
@@ -273,6 +280,9 @@
         var y = e.offsetY / tileSize / ZOOM | 0;
         var selectedOffset = y * WIDTH + x;
         debugEl.innerHTML = 'x: ' + x + " y: " + y + " pos: " + selectedOffset;
+        if (paintMode) {
+          debugEl.innerHTML += ' PAINT';
+        }
         if (drawing) {
           if (selectedLayer === 'collision') {
             map.collision[selectedOffset] = sample;
@@ -289,6 +299,8 @@
         if (!drawing) {
           var x = e.offsetX / tileSize / ZOOM | 0;
           var y = e.offsetY / tileSize / ZOOM | 0;
+          startX = x;
+          startY = y;
           selectedOffset = y * WIDTH + x;
           sample = 1 - map.collision[selectedOffset];
           drawing = true;
@@ -355,6 +367,10 @@
           }
           if (e.key === 'd') {
             selectedTile += 1;
+          }
+
+          if (e.key === 'g') {
+            paintMode = !paintMode;
           }
 
           if (e.key === 'v') {

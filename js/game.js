@@ -152,8 +152,8 @@
 
   function init() {
     console.log('all did');
-    x = 0;
-    y = 0;
+    x = 47*16;
+    y = 49*16;
 
     buffer = document.createElement('canvas');
     buffer.width = WIDTH * SCALE;
@@ -178,6 +178,7 @@
     var map = Loader.get('map');
 
     board = new Screen(map, 16, WIDTH, HEIGHT, sheet);
+    board.centerTo(47, 48);
 
     Loader.get('entities').forEach(function (e) {
       board.addEntity(new Entity(chars, e));

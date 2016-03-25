@@ -38,7 +38,7 @@ function Dialogue(tree, width, height) {
         }
         var text = parts[1];
         var outcome = parts[2];
-        if (!obj.choices) {
+        if (!curChat.choices) {
           curChat.choices = [];
         }
         if (outcome === 'END') {
@@ -108,22 +108,23 @@ function Dialogue(tree, width, height) {
       }
     }
 
-    function poll() {
-      if (kb.keys[kb.DOWN]) {
+    function handler(e) {
+      if (e.keyCode === kb.DOWN) {
         selected = selected + 1;
         if (selected > choices.length - 1) {
           selected = 0;
         }
         update();
       }
-      if (kb.keys[kb.UP]) {
+      if (e.keyCode === kb.UP) {
         selected = selected - 1;
         if (selected < 0) {
           selected = choices.length - 1;
         }
         update();
       }
-      if (kb.keys[kb.SPACE]) {
+      if (e.keyCode === kb.SPACE) {
+        window.removeEventListener('keydown', handler, false);
         choiceEl.style.display = 'none';
         if (choices[selected][1]) {
           chat(choices[selected][1], cb);
@@ -131,12 +132,10 @@ function Dialogue(tree, width, height) {
           self.close();
           cb();
         }
-      } else {
-        setTimeout(poll, 200);
       }
     }
 
-    poll();
+    window.addEventListener('keydown', handler, false);
   }
 
   function waitFor (key, cb) {

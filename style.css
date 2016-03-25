@@ -20,14 +20,14 @@ img {
   position: absolute;
   font-weight: 300;
   font-family: "Press Start 2P", monospace;
-  line-height: 1.6em;
+  line-height: 1.5em;
   font-size: 16px;
   color: #fff;
   display: none;
   padding: 8px 16px;
   background: #000;
   width: 480px;
-  height: 8em;
+  height: 7.5em;
   overflow: hidden;
   top: 16px;
   left: 0;
@@ -41,11 +41,11 @@ img {
   position: absolute;
   font-weight: 300;
   font-family: "Press Start 2P", monospace;
-  line-height: 1.6em;
+  line-height: 1.5em;
   font-size: 16px;
   color: #fff;
   display: none;
-  padding: 8px 16px;
+  padding: 8px 16px 8px 32px;
   background: #000;
   width: 384px;
   overflow: hidden;
@@ -56,6 +56,16 @@ img {
   border: 4px solid white;
   z-index: 1;
 }
+.dialogue-choices .highlight {
+  position: relative;
+}
 .dialogue-choices .highlight:before {
-  content: '•';
+  content: '';
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: -18px;
+  top: 7px;
+  background: #fff;
 }
