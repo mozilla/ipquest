@@ -16,6 +16,7 @@
   },
   {
     "position": 4852,
+    "sheet": "chars",
     "sprite": 5,
     "dialogue": "OLDMAN-1"
   },
@@ -28,5 +29,15 @@
     "position": 13874,
     "sprite": 3,
     "dialogue": "NPC5"
+  },
+  {
+    "position": 11249,
+    "sprite": 8,
+    "dialogue": "THINGY"
+  },
+  {
+    "position": 11251,
+    "sprite": 2,
+    "dialogue": "THINGY"
   }
 ]

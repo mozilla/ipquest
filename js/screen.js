@@ -47,9 +47,11 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
     this.addEntity = function (entity) {
       entities[entity.config.position] = entity;
       map.collision[entity.config.position] = 1;
-      map.trigger[entity.config.position + width] = {
-        dialogue: entity.config.dialogue
-      };
+      if (entity.config.dialogue) {
+        map.trigger[entity.config.position + width] = {
+          dialogue: entity.config.dialogue
+        };
+      }
     };
 
     this.pan = function(dx, dy) {

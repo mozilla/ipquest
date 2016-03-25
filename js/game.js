@@ -207,9 +207,11 @@
   }
 
   function wait(ms) {
-    return new Promise(function (resolve, reject) {
-      setTimeout(resolve, ms);
-    });
+    return function () {
+      return new Promise(function (resolve, reject) {
+        setTimeout(resolve, ms);
+      });
+    };
   }
 
   var progressEl = document.querySelector('.progress-inner');
@@ -251,6 +253,6 @@
     Promise.all([
       wait(1000),
       loading
-    ]).then(wait(1000)).then(init).catch(console.error.bind(console));
+    ]).then(wait(500)).then(init).catch(console.error.bind(console));
   });
 })();
