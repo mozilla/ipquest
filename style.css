@@ -28,10 +28,10 @@ img {
 }
 .progress {
   position: absolute;
-  bottom: 1em;
-  left: 1em;
-  right: 1em;
-  height: 2em;
+  bottom: 2em;
+  left: 2em;
+  right: 2em;
+  height: 1em;
 }
 .progress-inner {
   height: 100%;
