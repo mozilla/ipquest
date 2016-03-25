@@ -15,6 +15,10 @@
     lastTick,
     x, y;
 
+  var gameEl = document.querySelector('#game');
+  gameEl.style.width = SCALE * WIDTH + 'px';
+  gameEl.style.height = SCALE * HEIGHT + 'px';
+
   var requestFrame = (function() {
     return window.requestAnimationFrame ||
       window.mozRequestAnimationFrame ||
@@ -157,6 +161,8 @@
   }
 
   function init() {
+    document.querySelector('.splash').style.display = 'none';
+
     console.log('all did');
     x = 47*16;
     y = 49*16;
@@ -194,17 +200,27 @@
     context.mozImageSmoothingEnabled = false;
     context.scale(SCALE, SCALE);
 
-    var gameEl = document.querySelector('#game');
-    game.appendChild(canvas);
-    game.style.width = SCALE * WIDTH + 'px';
-    game.style.height = SCALE * HEIGHT + 'px';
+    gameEl.appendChild(canvas);
 
     window.map = map;
     start();
   }
 
+  function wait(ms) {
+    return new Promise(function (resolve, reject) {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  var progressEl = document.querySelector('.progress-inner');
+  function loadProgress(a, b) {
+    var pct = a / b * 100;
+    console.log(pct);
+    progressEl.style.width = pct + '%';
+  }
+
   window.addEventListener('load', function() {
-    Loader.load([
+    var loading = Loader.load([
       {
         name: 'tiles',
         type: 'image',
@@ -230,6 +246,11 @@
         type: 'json',
         url: 'entities.json'
       }
-    ], console.log.bind(console)).then(init).catch(console.error.bind(console));
+    ], loadProgress);
+
+    Promise.all([
+      wait(1000),
+      loading
+    ]).then(wait(1000)).then(init).catch(console.error.bind(console));
   });
 })();

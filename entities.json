@@ -18,5 +18,10 @@
     "position": 4852,
     "sprite": 5,
     "dialogue": "OLDMAN-1"
+  },
+  {
+    "position": 7922,
+    "sprite": 12,
+    "dialogue": "TROLL"
   }
 ]

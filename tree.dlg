@@ -274,3 +274,30 @@ From the humblest beginnings, sent for a mighty deed!
 [OLDMAN-7]
 
 Patience.
+
+[TROLL]
+
+You encountered two trolls!
+
+* Attack [TROLL-attack]
+* Run [TROLL-run]
+
+[TROLL-attack]
+
+You attack the trolls. They hardly notice.
+You are smashed to bits.
+
+* GAME OVER [GAMEOVER]
+
+[TROLL-run]
+
+You try to run, but it's too late.
+You are smashed to bits.
+
+* GAME OVER [GAMEOVER]
+
+[GAMEOVER]
+
+THE END
+
+* GAME OVER [GAMEOVER]
