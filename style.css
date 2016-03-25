@@ -1,6 +1,10 @@
 * {
-    margin: 0;
     padding: 0;
+}
+h1 {
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+  font-size: 48px;
 }
 #game canvas {
     display: block;
@@ -9,9 +13,13 @@
 #game {
   margin: 1em auto;
   position: relative;
+  text-align: left;
 }
 body {
-    background: #444;
+  background: #444;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
 }
 img {
   display: none;
