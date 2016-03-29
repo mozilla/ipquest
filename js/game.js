@@ -101,6 +101,10 @@
         stop();
         dialogue.chat(trigger.dialogue, function (change) {
           console.log(change);
+          if (change === 'GAMEOVER') {
+            setTimeout(titleScreen, 0);
+            return;
+          }
           if (change) {
             trigger.dialogue = change;
           }
@@ -160,13 +164,7 @@
     outCtx.drawImage(buffer, 0, 0);
   }
 
-  function init() {
-    document.querySelector('.splash').style.display = 'none';
-
-    console.log('all did');
-    x = 47*16;
-    y = 49*16;
-
+  function setup() {
     buffer = document.createElement('canvas');
     buffer.width = WIDTH * SCALE;
     buffer.height = HEIGHT * SCALE;
@@ -176,16 +174,22 @@
     canvas.height = HEIGHT * SCALE;
     outCtx = canvas.getContext('2d');
 
+    context = buffer.getContext('2d');
+    context.mozImageSmoothingEnabled = false;
+    context.scale(SCALE, SCALE);
+
+    gameEl.appendChild(canvas);
+  }
+
+  function startGame() {
+    x = 47*16;
+    y = 50*16;
 
     sheet = new SpriteSheet(Loader.get('tiles'), 16);
     chars = new SpriteSheet(Loader.get('characters'), 16);
     dude = new Dude(chars, 0);
 
     dialogue = new Dialogue(Loader.get('dialogue'), WIDTH, HEIGHT);
-    // setTimeout(function () {
-    //   stop();
-    //   dialogue.chat('legion-1', start);
-    // }, 3000);
 
     var map = Loader.get('map');
 
@@ -196,13 +200,7 @@
       board.addEntity(new Entity(chars, e));
     });
 
-    context = buffer.getContext('2d');
-    context.mozImageSmoothingEnabled = false;
-    context.scale(SCALE, SCALE);
 
-    gameEl.appendChild(canvas);
-
-    window.map = map;
     start();
   }
 
@@ -219,6 +217,25 @@
     var pct = a / b * 100;
     console.log(pct);
     progressEl.style.width = pct + '%';
+  }
+
+  function titleScreen() {
+    var splashEl = document.querySelector('.splash');
+    splashEl.style.display = 'block';
+    splashEl.classList.add('ready');
+    return new Promise(function (resolve, reject) {
+      function handle(e) {
+        if (e.keyCode === kb.SPACE) {
+          window.removeEventListener('keydown', handle, false);
+          splashEl.classList.add('crazy');
+          resolve();
+        }
+      }
+      window.addEventListener('keydown', handle, false);
+    }).then(wait(500)).then(function () {
+      splashEl.style.display = 'none';
+      splashEl.classList.remove('crazy');
+    }).then(startGame);
   }
 
   window.addEventListener('load', function() {
@@ -253,6 +270,6 @@
     Promise.all([
       wait(1000),
       loading
-    ]).then(wait(500)).then(init).catch(console.error.bind(console));
+    ]).then(setup).then(titleScreen).catch(console.error.bind(console));
   });
 })();

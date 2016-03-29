@@ -290,18 +290,14 @@ You encountered two trolls!
 
 You attack the trolls. They hardly notice.
 You are smashed to bits.
+GAME OVER
 
-* GAME OVER [GAMEOVER]
+* RESTART GAME [GAMEOVER]
 
 [TROLL-run]
 
 You try to run, but it's too late.
 You are smashed to bits.
+GAME OVER
 
-* GAME OVER [GAMEOVER]
-
-[GAMEOVER]
-
-THE END
-
-* GAME OVER [GAMEOVER]
+* RESTART GAME [GAMEOVER]

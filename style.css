@@ -34,6 +34,12 @@ img {
   background-repeat: no-repeat;
   z-index: 1;
 }
+.splash.ready .progress {
+  display: none;
+}
+.splash.ready .progress-ready {
+  display: block;
+}
 .progress {
   position: absolute;
   bottom: 2em;
@@ -46,10 +52,33 @@ img {
   width: 0;
   background: #fff;
 }
-.dialogue-out {
+.progress-ready {
+  display: none;
   position: absolute;
+  bottom: 3em;
+  text-align: center;
+  left: 1em;
+  right: 1em;
+  animation: 1s infinite flash;
+  animation-timing-function: step-start;
+}
+.splash.crazy .progress-ready {
+  animation-duration: 100ms;
+}
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
+}
+
+#game {
   font-weight: 300;
   font-family: "Press Start 2P", monospace;
+  font-size: 16px;
+}
+
+.dialogue-out {
+  position: absolute;
   line-height: 1.5em;
   font-size: 16px;
   color: #fff;

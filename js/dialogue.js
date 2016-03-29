@@ -43,6 +43,8 @@ function Dialogue(tree, width, height) {
         }
         if (outcome === 'END') {
           outcome = null;
+        } else if (outcome === 'GAMEOVER') {
+          outcome = 'GAMEOVER';
         } else if (outcome.match(/END->(.+)/)) {
           var parts = outcome.match(/END->(.+)/);
           curChat.choices.push([text, null, parts[1]]);
@@ -130,11 +132,17 @@ function Dialogue(tree, width, height) {
       if (e.keyCode === kb.SPACE) {
         window.removeEventListener('keydown', handler, false);
         choiceEl.style.display = 'none';
-        if (choices[selected][1]) {
-          chat(choices[selected][1], cb);
+        var choice = choices[selected];
+        if (choice[1]) {
+          if (choice[1] === 'GAMEOVER') {
+            self.close();
+            cb('GAMEOVER');
+          } else {
+            chat(choice[1], cb);
+          }
         } else {
           self.close();
-          cb(choices[selected][2]);
+          cb(choice[2]);
         }
       }
     }

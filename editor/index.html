@@ -118,7 +118,7 @@
         </div>
         <div class="tiles">
           <div>
-            <img src="/tiles">
+            <img src="/editor/tiles">
             <div class="highlight"></div>
           </div>
         </div>
@@ -319,7 +319,7 @@
 
       function doSave() {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/save");
+        xhr.open("POST", "/editor/save");
         xhr.setRequestHeader("Content-type", "application/json");
         xhr.send(JSON.stringify(map));
       }
@@ -388,7 +388,7 @@
       tiles.onload = function () {
         var xhr = new XMLHttpRequest();
         xhr.onload = init;
-        xhr.open("GET", "/map");
+        xhr.open("GET", "/editor/map");
         xhr.send();
       };
 
