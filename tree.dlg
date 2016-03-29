@@ -167,6 +167,10 @@ MERCHANT: Ha! You're kidding, right?
 
 
   ## SPOONY BARD ##
+[BARD-generic]
+SPOONY BARD: If only I had something to broadcast my newest songs. Hmm...
+
+  // After player finds Crystal of Transmitting, [BARD-generic->BARD-start]
 
 [BARD-start]
 SPOONY BARD: Wow, is that a Crystal of Transmitting? How did you get one of those?
