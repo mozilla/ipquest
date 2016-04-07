@@ -133,7 +133,7 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
         var ty1 = t.y * tileSize;
         var tx2 = (t.x + t.width) * tileSize;
         var ty2 = (t.y + t.height) * tileSize;
-        if (tx1 < x && x + w < tx2 && ty1 < y && y + h < ty2) {
+        if (tx1 <= x && x + w <= tx2 && ty1 < y && y + h < ty2) {
           return t;
         }
       }
