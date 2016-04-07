@@ -181,15 +181,15 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
                                 shiftX + (x * tileSize),
                                 shiftY + (y * tileSize),
                                 mapIndex);
-                mapIndex = map.trigger[(y * width + x + gridY * width + gridX)];
-                if (mapIndex) {
-                  foregroundContext.fillStyle = 'rgba(0,0,255,.4)';
-                  if (mapIndex.width) {
-                    foregroundContext.fillRect(x * tileSize + shiftX, y * tileSize + shiftY, mapIndex.width * tileSize, mapIndex.height * tileSize);
-                  } else {
-                    foregroundContext.fillRect(x * tileSize + shiftX, y * tileSize + shiftY, tileSize, tileSize);
-                  }
-                }
+                // mapIndex = map.trigger[(y * width + x + gridY * width + gridX)];
+                // if (mapIndex) {
+                //   foregroundContext.fillStyle = 'rgba(0,0,255,.4)';
+                //   if (mapIndex.width) {
+                //     foregroundContext.fillRect(x * tileSize + shiftX, y * tileSize + shiftY, mapIndex.width * tileSize, mapIndex.height * tileSize);
+                //   } else {
+                //     foregroundContext.fillRect(x * tileSize + shiftX, y * tileSize + shiftY, tileSize, tileSize);
+                //   }
+                // }
             }
         }
     };
