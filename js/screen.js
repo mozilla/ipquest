@@ -45,12 +45,29 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
     }
 
     this.addEntity = function (entity) {
-      entities[entity.config.position] = entity;
-      map.collision[entity.config.position] = 1;
-      if (entity.config.dialogue) {
-        map.trigger[entity.config.position + width] = {
-          dialogue: entity.config.dialogue
-        };
+      var config = entity.config;
+      var pos = config.position[0] + width * config.position[1];
+      entities[pos] = entity;
+      map.collision[pos] = 1;
+      if (config.dialogue) {
+        if (config.region) {
+          pos = config.region[0] + config.region[1] * width;
+          map.trigger[pos] = {
+            x: config.position[0],
+            y: config.position[1],
+            width: config.region[2],
+            height: config.region[3],
+            dialogue: config.dialogue
+          };
+        } else {
+          map.trigger[pos - 1] = {
+            x: config.position[0] - 1,
+            y: config.position[1],
+            width: 3,
+            height: 2,
+            dialogue: config.dialogue
+          };
+        }
       }
     };
 
@@ -60,6 +77,7 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
         viewX = Math.max(0,Math.min(newX, maxViewX));
         viewY = Math.max(0,Math.min(newY, maxViewY));
         this.render();
+        this.updateTriggers();
         return newX === viewX && newY === viewY;
     };
 
@@ -73,7 +91,32 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
       viewX = Math.max(0,Math.min(newX, maxViewX));
       viewY = Math.max(0,Math.min(newY, maxViewY));
       this.render();
+      this.updateTriggers();
       return this.getView();
+    };
+
+    this.triggersInView = [];
+
+    this.updateTriggers = function () {
+      var triggers = [];
+      var gridX = viewX / tileSize | 0;
+      var gridY = viewY / tileSize | 0;
+      for (var y=0; y <= (viewHeight / tileSize); y++) {
+        for (var x=0; x <= (viewWidth / tileSize); x++) {
+          var pos = gridX + x + (gridY + y) * width;
+          var t = map.trigger[pos];
+          if (t) {
+            if (!t.x) {
+              t.x = pos % width;
+              t.y = pos / width | 0;
+              t.width = 1;
+              t.height = 1;
+            }
+            triggers.push(t);
+          }
+        }
+      }
+      this.triggersInView = triggers;
     };
 
     this.toCoords = function (n) {
@@ -84,14 +127,14 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
     };
 
     this.getTrigger = function (x, y, w, h) {
-      var mapX = x / tileSize | 0;
-      var mapY = y / tileSize | 0;
-      var tileX = mapX * tileSize;
-      var tileY = mapY * tileSize;
-      var pos = mapY * width + mapX;
-      if (tileX <= x && x + w < tileX + tileSize && tileY <= y && y + h < tileY + tileSize) {
-        if (map.trigger[pos]) {
-          return map.trigger[pos];
+      for (var i = 0; i < this.triggersInView.length; i++) {
+        var t = this.triggersInView[i];
+        var tx1 = t.x * tileSize;
+        var ty1 = t.y * tileSize;
+        var tx2 = (t.x + t.width) * tileSize;
+        var ty2 = (t.y + t.height) * tileSize;
+        if (tx1 < x && x + w < tx2 && ty1 < y && y + h < ty2) {
+          return t;
         }
       }
     }
@@ -138,6 +181,15 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
                                 shiftX + (x * tileSize),
                                 shiftY + (y * tileSize),
                                 mapIndex);
+                mapIndex = map.trigger[(y * width + x + gridY * width + gridX)];
+                if (mapIndex) {
+                  foregroundContext.fillStyle = 'rgba(0,0,255,.4)';
+                  if (mapIndex.width) {
+                    foregroundContext.fillRect(x * tileSize + shiftX, y * tileSize + shiftY, mapIndex.width * tileSize, mapIndex.height * tileSize);
+                  } else {
+                    foregroundContext.fillRect(x * tileSize + shiftX, y * tileSize + shiftY, tileSize, tileSize);
+                  }
+                }
             }
         }
     };

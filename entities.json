@@ -1,42 +1,49 @@
 [
   {
-    "position": 1781,
+    "position": [245, 6],
     "sprite": 1,
     "dialogue": "SHOP1-start"
   },
   {
-    "position": 6409,
+    "position": [37, 27],
+    "region": [37, 27, 6, 2],
     "sprite": 6,
     "dialogue": "guard-1"
   },
   {
-    "position": 10797,
-    "sprite": 4,
-    "dialogue": "BARD-start"
+    "position": [42, 27],
+    "sprite": 6
   },
   {
-    "position": 4852,
+    "position": [42, 45],
+    "sprite": 4,
+    "dialogue": "BARD-generic"
+  },
+  {
+    "position": [244, 18],
     "sheet": "chars",
     "sprite": 5,
     "dialogue": "OLDMAN-1"
   },
   {
-    "position": 8178,
+    "position": [242, 31],
     "sprite": 12,
     "dialogue": "TROLL"
   },
   {
-    "position": 13874,
+    "position": [50, 54],
     "sprite": 3,
     "dialogue": "NPC5"
   },
   {
-    "position": 11249,
+    "position": [241, 43],
+    "region": [240, 45, 5, 1],
     "sprite": 8,
-    "dialogue": "THINGY"
+    "dialogue": "RING-start"
   },
   {
-    "position": 11251,
+    "position": [243, 43],
+    "region": [243, 43, 1, 1],
     "sprite": 2,
     "dialogue": "THINGY"
   }

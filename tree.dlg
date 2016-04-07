@@ -70,12 +70,21 @@ I heard there's trolls and other NPEs out there.
 
 You know, Non-Player Entities. Anyway, it's not safe to leave town alone.
 
-* Where would I find company? [END]
+* Where would I find company? [guard-4]
 * I'll take my chances. [guard-3]
 
 [guard-3]
 
 Your funeral.
+
+* Thanks for all the help. [END->NOOP]
+
+[guard-4]
+
+There's a tavern down by the lake. There's as good as any place.
+
+* Thanks. [END->NOOP]
+
   ## END TOWN GUARD DIALOGUE ##
 
   ## SHOPKEEPER SEQUENCE 1 ##
@@ -97,7 +106,7 @@ Equip Rusty Dagger?
 * No [SHOP1-list1]
 
 [SHOP1-Rusty_Dagger_Equip]
-You look sharp holding that dagger. Get it? Har Har!
+MERCHANT: You look sharp holding that dagger. Get it? Har Har!
 * Wait, what's this on the handle? [SHOP1-License]
 
 [SHOP1-License]
@@ -291,6 +300,15 @@ You encountered two trolls!
 * Run [TROLL-run]
 
 [TROLL-attack]
+
+Who should attack?
+
+* You [TROLL-attack-you]
+* EMPTY PARTY SLOT 1 [TROLL-attack]
+* EMPTY PARTY SLOT 2 [TROLL-attack]
+* EMPTY PARTY SLOT 3 [TROLL-attack]
+
+[TROLL-attack-you]
 
 You attack the trolls. They hardly notice.
 You are smashed to bits.

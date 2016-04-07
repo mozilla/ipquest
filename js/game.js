@@ -12,7 +12,6 @@
     viewY = 0,
     sheet, chars,
     dude,
-    lastTick,
     x, y;
 
   var gameEl = document.querySelector('#game');
@@ -37,7 +36,7 @@
     var ox = x;
     var oy = y;
     var tick = (new Date()).getTime();
-    var d = 2;
+    var d = 1;
     var walk = 0;
     var dir = 0;
     var view = board.getView();
@@ -97,11 +96,11 @@
         x = pos.x;
         y = pos.y;
       }
-      if (trigger.dialogue) {
+      if (trigger.dialogue && trigger.dialogue !== 'NOOP') {
         stop();
         dialogue.chat(trigger.dialogue, function (change) {
-          console.log(change);
           if (change === 'GAMEOVER') {
+            stop();
             setTimeout(titleScreen, 0);
             return;
           }
@@ -121,13 +120,6 @@
     lastTick = tick;
   }
 
-  function fakeMap(width, height, fill) {
-    var map = [];
-    for (var i = 0; i < width * height; i++) {
-      map[i] = fill || ~~(Math.random() * sheet.tileCount);
-    }
-    return map;
-  }
 
   function mapRect(map, px, py, s, w, h) {
     for (var y = 0; y < h; y++) {
@@ -137,18 +129,48 @@
     }
   }
 
+  var startTime;
+  var tickCount = 0;
+  var isPaused = false;
   function start() {
+    if (running) return;
     running = true;
-    lastTick = (new Date()).getTime();
+    tickCount = 0;
+    startTime = Date.now();
     loop();
   }
 
   function loop() {
-    tick();
+    if (document.hidden) {
+      pause();
+      return;
+    }
+    var time = Date.now();
+    var tickGoal = (time - startTime) / 10;
+    while (tickCount < tickGoal) {
+      tick();
+      tickCount++;
+    }
     render();
     if (running) {
       requestFrame(loop, canvas);
     }
+  }
+
+  function pause() {
+    console.log('pause');
+    stop();
+    isPaused = true;
+    function poll() {
+      if (document.hidden) {
+        setTimeout(poll, 100);
+      } else {
+        console.log('unpause');
+        isPaused = false;
+        start();
+      }
+    }
+    poll();
   }
 
   function stop() {
@@ -182,8 +204,8 @@
   }
 
   function startGame() {
-    x = 47*16;
-    y = 50*16;
+    x = 47 * 16;
+    y = 50 * 16;
 
     sheet = new SpriteSheet(Loader.get('tiles'), 16);
     chars = new SpriteSheet(Loader.get('characters'), 16);
@@ -215,7 +237,6 @@
   var progressEl = document.querySelector('.progress-inner');
   function loadProgress(a, b) {
     var pct = a / b * 100;
-    console.log(pct);
     progressEl.style.width = pct + '%';
   }
 
@@ -235,7 +256,7 @@
     }).then(wait(500)).then(function () {
       splashEl.style.display = 'none';
       splashEl.classList.remove('crazy');
-    }).then(startGame);
+    }).then(startGame).catch(console.error.bind(console));
   }
 
   window.addEventListener('load', function() {
