@@ -53,8 +53,8 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
         if (config.region) {
           pos = config.region[0] + config.region[1] * width;
           map.trigger[pos] = {
-            x: config.position[0],
-            y: config.position[1],
+            x: config.region[0],
+            y: config.region[1],
             width: config.region[2],
             height: config.region[3],
             dialogue: config.dialogue
