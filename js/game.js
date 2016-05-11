@@ -259,6 +259,10 @@
     }).then(startGame).catch(console.error.bind(console));
   }
 
+  if (window.location.search === '?debug') {
+    window.DEBUG = true;
+  }
+
   window.addEventListener('load', function() {
     var loading = Loader.load([
       {
