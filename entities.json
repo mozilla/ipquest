@@ -46,5 +46,11 @@
     "region": [243, 43, 1, 1],
     "sprite": 2,
     "dialogue": "THINGY"
+  },
+  {
+	"position": [79, 53],
+	"region": [73, 53, 3, 3],
+	"dialogue": "OPENING"
   }
+
 ]

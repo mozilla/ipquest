@@ -206,7 +206,12 @@
   function startGame() {
     x = 47 * 16;
     y = 50 * 16;
-
+	
+	// possible new starting values
+	x = 74 * 16;
+	y = 54 * 16;
+	
+	
     sheet = new SpriteSheet(Loader.get('tiles'), 16);
     chars = new SpriteSheet(Loader.get('characters'), 16);
     dude = new Dude(chars, 0);
@@ -216,7 +221,7 @@
     var map = Loader.get('map');
 
     board = new Screen(map, 16, WIDTH, HEIGHT, sheet);
-    board.centerTo(47, 48);
+    board.centerTo(x / 16, y / 16);
 
     Loader.get('entities').forEach(function (e) {
       board.addEntity(new Entity(chars, e));

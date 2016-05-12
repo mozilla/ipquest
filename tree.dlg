@@ -1,3 +1,13 @@
+  ## INTRODUCTION ##
+
+[OPENING]
+It is a period of civil unrest. The forces of the Evil Empire, seeking to wrest control of the kingdom from its fair citizens.
+In a world, plunged into chaos, one man is destined to rise up to defend the kingdom for all.
+But first, he must gather the allies and tools necessary in his quest to restore peace and justice to the kingdom...
+
+* Start [END->NOOP]
+
+
   ## COMMON INTEREST OF THE RING ##
 
 [RING-start]
@@ -52,7 +62,7 @@ ARAGORN: Well this is awkward. We kind of imagined that everyone in the Common I
 
 [RING-leave]
 
-ELDER POSA: Well, see you all all the Patent Office. Good luck!
+ELDER POSA: Well, see you all at the Mt. Pto. Good luck!
 
 * You've got to be kidding me... [END]
 
