@@ -7,7 +7,9 @@ var Loader = (function () {
     function tick(promise) {
       promise.then(function () {
         progress++;
-        tickCallback(progress, len);
+        if (tickCallback) {
+          tickCallback(progress, len);
+        }
       });
       return promise;
     }
