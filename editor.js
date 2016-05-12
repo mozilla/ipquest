@@ -7,8 +7,13 @@ const MIMES = {
   '.html': 'text/html',
   '.css': 'text/css',
   '.png': 'image/png',
+  '.js': 'text/javascript',
   '.json': 'application/json'
 };
+
+function relPath(s) {
+  return path.join(__dirname, path.join.apply(path, s.split('/')));
+}
 
 // Create an HTTP tunneling proxy
 var server = http.createServer( (req, res) => {
@@ -16,17 +21,12 @@ var server = http.createServer( (req, res) => {
 
   if (url.path === '/editor/') {
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(fs.readFileSync(__dirname + '/editor/index.html'));
+    res.end(fs.readFileSync(relPath('editor/index.html')));
     return;
   }
-  if (url.path === '/editor/tiles') {
-    res.writeHead(200, {'Content-Type': 'image/png'});
-    res.end(fs.readFileSync(__dirname + '/img/tilesheet.png'));
-    return;
-  }
-  if (url.path === '/editor/map') {
-    res.writeHead(200, {'Content-Type': 'application.json'});
-    res.end(fs.readFileSync(__dirname + '/map.json'));
+  if (url.path === '/') {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(fs.readFileSync(relPath('index.html')));
     return;
   }
 
@@ -41,7 +41,7 @@ var server = http.createServer( (req, res) => {
       var obj;
       try {
         obj = JSON.parse(body);
-        fs.writeFileSync(__dirname + '/map.json', JSON.stringify(obj));
+        fs.writeFileSync(relPath('map.json'), JSON.stringify(obj));
       } catch (e) {
       }
       // empty 200 OK response for now
@@ -57,7 +57,7 @@ var server = http.createServer( (req, res) => {
 
   try {
     fs.accessSync(localPath);
-    console.log('gotcha!');
+    console.log('GET', path.relative(__dirname, localPath));
     res.writeHead(200, {'Content-Type': mime});
     res.end(fs.readFileSync(localPath));
   } catch (e) {
