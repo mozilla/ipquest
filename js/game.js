@@ -88,6 +88,8 @@
       }
     }
 
+    board.update();
+
     var trigger = board.getTrigger(x + 3, y + 8, 9, 7);
     if (trigger && (trigger !== lastTrigger || leftTrigger) && leftTrigger) {
       if (trigger.destination) {
@@ -178,6 +180,7 @@
   }
 
   function render() {
+    board.render();
     context.fillRect(0,0,WIDTH*SCALE,HEIGHT*SCALE);
     context.drawImage(board.getBGCanvas(), 0, 0);
     var view = board.getView();

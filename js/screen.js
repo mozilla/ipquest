@@ -76,9 +76,15 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
             newY = viewY + dy;
         viewX = Math.max(0,Math.min(newX, maxViewX));
         viewY = Math.max(0,Math.min(newY, maxViewY));
-        this.render();
-        this.updateTriggers();
+        this.needsUpdate = true;
         return newX === viewX && newY === viewY;
+    };
+
+    this.update = function () {
+      if (this.needsUpdate) {
+        this.needsUpdate = false;
+        this.updateTriggers();
+      }
     };
 
     this.centerTo = function(x, y) {
