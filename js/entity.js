@@ -30,6 +30,8 @@ function Entity(spritesheet, config) {
   this.render = function (ctx, x, y) {
     // Animation!
     if (config.sprite instanceof Array) {
+      var n = (Date.now() / config.speed) % config.sprite.length | 0;
+      spritesheet.put(ctx, x, y, config.sprite[n]);
     } else {
       spritesheet.put(ctx, x, y, config.sprite);
     }

@@ -48,9 +48,88 @@
     "dialogue": "THINGY"
   },
   {
-	"position": [79, 53],
-	"region": [73, 53, 3, 3],
-	"dialogue": "OPENING"
+    "position": [242, 18],
+    "sprite": [5, 240, 241, 242],
+    "speed": 350
+  },
+  {
+    "position": [246, 18],
+    "sprite": [5, 240, 241, 242],
+    "speed": 350
+  },
+  {
+    "position": [237, 43],
+    "sprite": [5, 240, 241, 242],
+    "speed": 350
+  },
+  {
+    "position": [247, 43],
+    "sprite": [5, 240, 241, 242],
+    "speed": 350
+  },
+  {
+    "position": [243, 15],
+    "sprite": [1746, 1747, 1748],
+    "speed": 350
+  },
+  {
+    "position": [245, 15],
+    "sprite": [1746, 1747, 1748],
+    "speed": 350
+  },
+  {
+    "position": [66, 79],
+    "sprite": [725, 726, 727, 728],
+    "speed": 500
+  },
+  {
+    "position": [87, 79],
+    "sprite": [725, 726, 727, 728],
+    "speed": 500
+  },
+  {
+    "position": [27, 14],
+    "sprite": [725, 726, 727, 728],
+    "speed": 500
+  },
+  {
+    "position": [34, 46],
+    "sprite": [747, 748],
+    "speed": 850
+  },
+  {
+    "position": [88, 74],
+    "sprite": [747, 748],
+    "speed": 850
+  },
+  {
+    "position": [33, 89],
+    "sprite": [747, 748],
+    "speed": 850
+  },
+  {
+    "position": [79, 53],
+    "region": [73, 53, 3, 3],
+    "dialogue": "OPENING"
+  },
+  {
+    "position": [28, 89],
+    "sprite": [1000, 1001, 1002, 1003],
+    "speed": 500
+  },
+  {
+    "position": [29, 89],
+    "sprite": [1020, 1021, 1022, 1023],
+    "speed": 500
+  },
+  {
+    "position": [28, 90],
+    "sprite": [1040, 1041, 1042, 1043],
+    "speed": 500
+  },
+  {
+    "position": [29, 90],
+    "sprite": [1060, 1061, 1062, 1063],
+    "speed": 500
   }
-
 ]
