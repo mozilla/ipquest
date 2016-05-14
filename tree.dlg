@@ -1,9 +1,9 @@
   ## INTRODUCTION ##
 
 [OPENING]
-It is a period of civil unrest. The forces of the Evil Empire, seeking to wrest control of the kingdom from its fair citizens.
+It is a period of civil unrest. The forces of the Evil Empire, seek to wrest control of the kingdom from its fair citizens.
 In a world, plunged into chaos, one man is destined to rise up to defend the kingdom for all.
-But first, he must gather the allies and tools necessary in his quest to restore peace and justice to the kingdom...
+But first, he must gather the allies and tools necessary in his quest to restore peace and justice to the land...
 
 * Start [END->NOOP]
 
@@ -256,8 +256,88 @@ That bard is a genius. He's done it again!
   ## end of random npc dialogue re: Bard ##
 
 [NPC5]
+STRANGER: Hey there! I don't think I've seen you around before -- you must be new.
+STRANGER: What brings you to town?
 
-There's a wise old man in a cave to the east.
+* I'm here to join the Rebellion! [NPC5-overview]
+* Leave me alone. [END]
+
+[NPC5-overview]
+STRANGER: The Rebellion, eh? You yearn for a world before the dark times... before the Empire.
+STRANGER: Well, when you're ready, the TOWN GATES are North of here, where the guards are.
+STRANGER: It's dangerous to go alone, though! You'll want to pick up some SUPPLIES for the dangerous road ahead.
+STRANGER: I heard a spoony-looking BARD singing about times before the Empire earlier this week.
+STRANGER: Oh, and a bunch of serious looking folk came into town yesterday, mumbling something about a RING.
+STRANGER: ... There's also a wizard living in a cave to the East. But I'm sure he's just a crazy, OLD MAN.
+
+* Town Gates? [NPC5-towngates]
+* Bard? [NPC5-bard]
+* Ring? [NPC5-ring]
+* Old Man? [NPC5-oldman]
+* Supplies? [NPC5-supplies]
+* Thanks. [END->NPC5-menu]
+
+[NPC5-menu]
+STRANGER: Still here, huh?
+
+* Town Gates? [NPC5-towngates]
+* Bard? [NPC5-bard]
+* Ring? [NPC5-ring]
+* Old Man? [NPC5-oldman]
+* Supplies? [NPC5-supplies]
+* Thanks. [END->NPC5-menu]
+
+[NPC5-ring]
+STRANGER: Yeah, they looked like they were all business, but I don't know much about them.
+STRANGER: I think they went down to the TAVERN.
+
+* Town Gates? [NPC5-towngates]
+* Bard? [NPC5-bard]
+* Ring? [NPC5-ring]
+* Old Man? [NPC5-oldman]
+* Supplies? [NPC5-supplies]
+* Thanks. [END->NPC5-menu]
+
+[NPC5-towngates]
+STRANGER: Well, of course. You don't think you'll beat the Empire just sitting around this small town, do you?
+
+* Town Gates? [NPC5-towngates]
+* Bard? [NPC5-bard]
+* Ring? [NPC5-ring]
+* Old Man? [NPC5-oldman]
+* Supplies? [NPC5-supplies]
+* Thanks. [END->NPC5-menu]
+
+[NPC5-bard]
+STRANGER: The song was pretty catchy, and definitely not flattering towards the Empire.
+STRANGER: Couldn't really hear him over the crowd though.
+
+* Town Gates? [NPC5-towngates]
+* Bard? [NPC5-bard]
+* Ring? [NPC5-ring]
+* Old Man? [NPC5-oldman]
+* Supplies? [NPC5-supplies]
+* Thanks. [END->NPC5-menu]
+
+[NPC5-oldman]
+STRANGER: I think his name is Ben. Don't quote me on that though.
+
+* Town Gates? [NPC5-towngates]
+* Bard? [NPC5-bard]
+* Ring? [NPC5-ring]
+* Old Man? [NPC5-oldman]
+* Supplies? [NPC5-supplies]
+* Thanks. [END->NPC5-menu]
+
+[NPC5-supplies]
+STRANGER: There's a shop by the edge of town, just before you exit. You should check 'em out!
+
+* Town Gates? [NPC5-towngates]
+* Bard? [NPC5-bard]
+* Ring? [NPC5-ring]
+* Old Man? [NPC5-oldman]
+* Supplies? [NPC5-supplies]
+* Thanks. [END->NPC5-menu]
 
 [OLDMAN-1]
 
