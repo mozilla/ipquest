@@ -210,9 +210,6 @@
     x = 47 * 16;
     y = 50 * 16;
 
-	// possible new starting values
-	x = 74 * 16;
-	y = 54 * 16;
 
 
     sheet = new SpriteSheet(Loader.get('tiles'), 16);
