@@ -115,10 +115,12 @@ function render(x, y, w, h) {
       for (var dx = x; dx < x + w + 1; dx++) {
         i = dy * WIDTH + dx;
         t = entities[i];
-        if (t && t.sprite) {
-          sx = t.sprite % (characters.width / 16);
-          sy = t.sprite / (characters.width / 16) | 0;
-          ctx.drawImage(characters, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
+        if (t) {
+          if (t.sprite) {
+            sx = t.sprite % (characters.width / 16);
+            sy = t.sprite / (characters.width / 16) | 0;
+            ctx.drawImage(characters, sx * tileSize, sy * tileSize, tileSize, tileSize, dx * tileSize, dy * tileSize, tileSize, tileSize);
+          }
           ctx.strokeRect(dx * tileSize + 1, dy * tileSize + 1, tileSize - 2, tileSize - 2);
           if (t.region) {
             ctx.fillStyle = 'rgba(255,255,0,.3)';

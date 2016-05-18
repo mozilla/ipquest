@@ -49,6 +49,17 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
       var pos = config.position[0] + width * config.position[1];
       entities[pos] = entity;
       map.collision[pos] = 1;
+      if (config.destination) {
+        pos = config.region[0] + config.region[1] * width;
+        map.trigger[pos] = {
+          x: config.region[0],
+          y: config.region[1],
+          width: config.region[2],
+          height: config.region[3],
+          destination: config.destination,
+          center: config.center
+        };
+      }
       if (config.dialogue) {
         if (config.region) {
           pos = config.region[0] + config.region[1] * width;
@@ -57,6 +68,7 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
             y: config.region[1],
             width: config.region[2],
             height: config.region[3],
+            auto: config.auto,
             dialogue: config.dialogue
           };
         } else {
@@ -65,6 +77,7 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
             y: config.position[1],
             width: 3,
             height: 2,
+            auto: config.auto,
             dialogue: config.dialogue
           };
         }
@@ -107,8 +120,8 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
       var triggers = [];
       var gridX = viewX / tileSize | 0;
       var gridY = viewY / tileSize | 0;
-      for (var y=0; y <= (viewHeight / tileSize); y++) {
-        for (var x=0; x <= (viewWidth / tileSize); x++) {
+      for (var y=-1; y <= (viewHeight / tileSize); y++) {
+        for (var x=-1; x <= (viewWidth / tileSize); x++) {
           var pos = gridX + x + (gridY + y) * width;
           var t = map.trigger[pos];
           if (t) {
@@ -139,7 +152,7 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
         var ty1 = t.y * tileSize;
         var tx2 = (t.x + t.width) * tileSize;
         var ty2 = (t.y + t.height) * tileSize;
-        if (tx1 <= x && x + w <= tx2 && ty1 < y && y + h < ty2) {
+        if (tx1 <= x && x + w <= tx2 && ty1 <= y && y + h <= ty2) {
           return t;
         }
       }

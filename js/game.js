@@ -92,28 +92,32 @@
 
     var trigger = board.getTrigger(x + 3, y + 8, 9, 7);
     if (trigger && (trigger !== lastTrigger || leftTrigger) && leftTrigger) {
-      if (trigger.destination) {
-        board.centerTo(trigger.center);
-        var pos = board.toCoords(trigger.destination);
-        x = pos.x;
-        y = pos.y;
+      if ((trigger.dialogue && trigger.auto) ||
+          (trigger.dialogue && kb.keys[kb.SPACE]) ||
+          !trigger.dialogue) {
+        if (trigger.destination) {
+          board.centerTo(trigger.center);
+          var pos = board.toCoords(trigger.destination);
+          x = pos.x;
+          y = pos.y;
+        }
+        if (trigger.dialogue && trigger.dialogue !== 'NOOP') {
+          stop();
+          dialogue.chat(trigger.dialogue, function (change) {
+            if (change === 'GAMEOVER') {
+              stop();
+              setTimeout(titleScreen, 0);
+              return;
+            }
+            if (change) {
+              trigger.dialogue = change;
+            }
+            start();
+          });
+        }
+        lastTrigger = trigger;
+        leftTrigger = false;
       }
-      if (trigger.dialogue && trigger.dialogue !== 'NOOP') {
-        stop();
-        dialogue.chat(trigger.dialogue, function (change) {
-          if (change === 'GAMEOVER') {
-            stop();
-            setTimeout(titleScreen, 0);
-            return;
-          }
-          if (change) {
-            trigger.dialogue = change;
-          }
-          start();
-        });
-      }
-      lastTrigger = trigger;
-      leftTrigger = false;
     }
     if (!trigger) {
       leftTrigger = true;

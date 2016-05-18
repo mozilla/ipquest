@@ -8,7 +8,14 @@
     "position": [37, 27],
     "region": [37, 27, 6, 2],
     "sprite": 6,
+    "auto": true,
     "dialogue": "guard-1"
+  },
+  {
+    "position": [28, 0],
+    "region": [27, 0, 11, 2],
+    "destination": 8690,
+    "center": 8178
   },
   {
     "position": [42, 27],
@@ -28,6 +35,7 @@
   {
     "position": [242, 31],
     "sprite": 12,
+    "auto": true,
     "dialogue": "TROLL"
   },
   {

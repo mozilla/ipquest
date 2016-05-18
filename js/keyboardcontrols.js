@@ -26,6 +26,9 @@ function KeyboardControls() {
     window.addEventListener('keydown', function(e) {
         setKey(e.keyCode, true);
         self.long[e.keyCode] = true;
+        if (!(e.metaKey || e.shiftKey || e.ctrlKey || e.altKey)) {
+          e.preventDefault();
+        }
     });
     window.addEventListener('keyup', function(e) {
         setKey(e.keyCode, false);

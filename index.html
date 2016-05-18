@@ -3,16 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+    <link href="//addons.cdn.mozilla.net/static/css/tabzilla/tabzilla.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>PatentQuest</title>
   </head>
   <body>
-    <h1>PATENT QUEST</h1>
-	<div id="introduction" style="max-width: 1024px; margin: auto;">
-		<h2>We've always said that <a href="https://blog.mozilla.org/netpolicy/2015/04/15/open-source-software-and-the-patent-system/">patents are challenging for open-source software</a>. But that doesn't mean they aren't challenging for others, too! Thankfully, the heroes from our most beloved RPGs and stories never had to deal with patents. Because whether you are trying to save a Kingdom or save the free Web, patents can really slow you down.</h2>
-	</div>
-    <div id="game">
+    <header>
+      <div id="tabzilla">
+        <a href="https://www.mozilla.org/">Mozilla</a>
+      </div>
+      <h1>PATENT QUEST</h1>
+    </header>
+    <section id="game">
       <div class="dialogue-out"></div>
       <div class="dialogue-choices"></div>
       <div class="splash">
@@ -21,10 +24,13 @@
         </div>
         <div class="progress-ready">PRESS SPACE</div>
       </div>
-    </div>
-    <p>
-      <b>Controls:</b> arrow keys to move, spacebar to select/advance dialogue
-    </p>
+    </section>
+    <section class="introduction">
+  		<p>We've always said that <a href="https://blog.mozilla.org/netpolicy/2015/04/15/open-source-software-and-the-patent-system/">patents are challenging for open-source software</a>. But that doesn't mean they aren't challenging for others, too! Thankfully, the heroes from our most beloved RPGs and stories never had to deal with patents. Because whether you are trying to save a Kingdom or save the free Web, patents can really slow you down.</p>
+      <p class="controls">
+        <b>Controls:</b> arrow keys to move, spacebar to select/advance dialogue
+      </p>
+    </section>
     <script src="js/underscore.js"></script>
     <script src="js/canvas.js"></script>
     <script src="js/screen.js"></script>
