@@ -71,27 +71,29 @@ ELDER POSA: Well, see you all at the Mt. Pto. Good luck!
   ## TOWN GUARD DIALOGUE ##
 [guard-1]
 
-I wouldn't leave the village if I were you.
-I heard there's trolls and other NPEs out there.
+GUARD: Halt! I wouldn't leave the village if I were you.
+GUARD: I heard there's trolls and other NPEs out there.
 
 * NPEs? [guard-2]
 
 [guard-2]
 
-You know, Non-Player Entities. Anyway, it's not safe to leave town alone.
+GUARD: You know, Non-Player Entities.
+GUARD: Anyway, it's not safe to leave town alone. And you should make sure you're armed too!
 
-* Where would I find company? [guard-4]
+* Where should I go? [guard-4]
 * I'll take my chances. [guard-3]
 
 [guard-3]
 
-Your funeral.
+GUARD: Your funeral.
 
 * Thanks for all the help. [END->NOOP]
 
 [guard-4]
 
-There's a tavern down by the lake. There's as good as any place.
+GUARD: There's a tavern down by the lake. There's as good as any place.
+GUARD: There's also a shop just up the street if you need equipment.
 
 * Thanks. [END->NOOP]
 
@@ -255,6 +257,8 @@ That bard is a genius. He's done it again!
 
   ## end of random npc dialogue re: Bard ##
 
+  ## TOWN GUIDE dialogue ##
+  
 [NPC5]
 STRANGER: Hey there! I don't think I've seen you around before -- you must be new.
 STRANGER: What brings you to town?
@@ -339,6 +343,8 @@ STRANGER: There's a shop by the edge of town, just before you exit. You should c
 * Supplies? [NPC5-supplies]
 * Thanks. [END->NPC5-menu]
 
+  ## END of Town Guide (NPC5) dialogue ##
+
 [OLDMAN-1]
 
 Ah, you've come!
@@ -386,30 +392,80 @@ Patience.
 
 You encountered two trolls!
 
-* Attack [TROLL-attack]
-* Run [TROLL-run]
+* Fight [TROLL-fight]
 
-[TROLL-attack]
 
-Who should attack?
+[TROLL-fight]
 
-* You [TROLL-attack-you]
-* EMPTY PARTY SLOT 1 [TROLL-attack]
-* EMPTY PARTY SLOT 2 [TROLL-attack]
-* EMPTY PARTY SLOT 3 [TROLL-attack]
+Select character:
 
-[TROLL-attack-you]
+* You [TROLL-attack-menu]
+* EMPTY PARTY SLOT 1 [TROLL-fight]
+* EMPTY PARTY SLOT 2 [TROLL-fight]
+* EMPTY PARTY SLOT 3 [TROLL-fight]
 
-You attack the trolls. They hardly notice.
-You are smashed to bits.
-GAME OVER
+[TROLL-attack-menu]
+
+Select action:
+
+  ## would be good to be able to conditionally have the first two options (based on whether player went to the shop and completed those dialogues) ##
+* Swing RUSTY DAGGER [TROLL-attack-nolicense]
+* Shoot GILDED BOW [TROLL-attack-nolicense]
+* PUNCH [TROLL-attack-punch] 
+* Abilities [TROLL-abilities]
+* Back [TROLL-fight]
+
+[TROLL-attack-nolicense]
+
+The TROLL counters by casting ENJOIN!
+You are prevented from using unlicensed equipment or abilities for the rest of the fight!
+
+* Back [TROLL-attack-menu2]
+
+
+[TROLL-attack-menu2]
+
+Select action:
+
+* PUNCH [TROLL-attack-punch]
+* Abilities [TROLL-abilities2]
+
+[TROLL-attack-punch]
+You PUNCH the Troll and deal 1 damage!
+Select action:
+
+* PUNCH [TROLL-attack-punch]
+* SETTLE (Run) [TROLL-run]
+* RESTART GAME [GAMEOVER]
+
+[TROLL-abilities]
+
+Select ability:
+
+* SETTLE (Run) [TROLL-run]
+* SERVE DISCOVERY (Slow) [TROLL-paralyze]
+* Back [TROLL-attack-menu]
+
+[TROLL-abilities2]
+
+Select ability:
+
+* SETTLE (Run) [TROLL-run]
+* SERVE DISCOVERY (Slow) [TROLL-paralyze]
+* Back [TROLL-attack-menu2]
+
+[TROLL-paralyze]
+You use SERVE DISCOVERY on the Troll. It isn't very effective!
+The TROLL uses FILE A MOTION on you.
+You have died.
 
 * RESTART GAME [GAMEOVER]
 
 [TROLL-run]
 
-You try to run, but it's too late.
-You are smashed to bits.
-GAME OVER
+You try to SETTLE in an attempt to flee the trolls.
+You manage to escape, but you dropped half your gold in the process!
 
 * RESTART GAME [GAMEOVER]
+
+  ## need to have a way to teleport back to town on 'flee' ##
