@@ -13,9 +13,14 @@ h1 {
   text-align: center;
   font-family: "Press Start 2P", monospace;
   font-size: 48px;
+  text-indent: -9999px;
+  width: 616px;
+  height: 144px;
+  margin: 0 auto;
+  background: url(img/logo.png);
 }
 header {
-  padding: 1rem 0 0;
+  padding: 1rem 0;
   max-width: 1024px;
   position: relative;
   margin: 0 auto;
