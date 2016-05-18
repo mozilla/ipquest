@@ -48,6 +48,18 @@
     "dialogue": "THINGY"
   },
   {
+	"position": [244, 43],
+	"sprite": 7
+  },
+  {
+	"position": [245, 44],
+	"sprite": 50
+  },
+  {
+	"position": [239, 44],
+	"sprite": 147
+  },
+  {
     "position": [242, 18],
     "sprite": [5, 240, 241, 242],
     "speed": 350
