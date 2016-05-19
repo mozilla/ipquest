@@ -44,6 +44,7 @@ a {
   margin: 0 auto;
   position: relative;
   text-align: left;
+  border: 3px solid #000;
 }
 body {
   background: #444;
@@ -63,6 +64,10 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
+}
+.splash.ready {
+  background-image: url('img/logo.png');
+  background-position: center 40px;
 }
 .splash.ready .progress {
   display: none;
