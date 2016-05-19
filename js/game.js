@@ -31,8 +31,11 @@
 
   var lastTrigger = 0;
   var leftTrigger = true;
+  var dialogueCoolDown = 0;
 
   function tick() {
+    if (!running) return;
+
     var ox = x;
     var oy = y;
     var tick = (new Date()).getTime();
@@ -90,9 +93,13 @@
 
     board.update();
 
+    if (dialogueCoolDown > 0) {
+      dialogueCoolDown--;
+    }
+
     var trigger = board.getTrigger(x + 3, y + 8, 9, 7);
-    if (trigger && (trigger !== lastTrigger || leftTrigger) && leftTrigger) {
-      if (trigger.destination) {
+    if (trigger) {
+      if (trigger.destination && (trigger !== lastTrigger || leftTrigger) && leftTrigger) {
         board.centerTo(trigger.center);
         var pos = board.toCoords(trigger.destination);
         x = pos.x;
@@ -102,9 +109,10 @@
         if (trigger.entity) {
           trigger.entity.prompt = true;
         }
-        if (trigger.auto || kb.keys[kb.SPACE]) {
+        if (trigger.auto || (kb.keys[kb.SPACE] && dialogueCoolDown === 0)) {
           stop();
           dialogue.chat(trigger.dialogue, function (change) {
+            dialogueCoolDown = 10;
             if (change === 'GAMEOVER') {
               stop();
               setTimeout(titleScreen, 0);
