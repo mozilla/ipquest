@@ -1,4 +1,4 @@
-
+	
 
 ## Leaving the Town
 - The hero finds someone bragging about how he was the chosen hero years ago and constructed a pentagon of power way before BigCorp ever did.
@@ -20,7 +20,7 @@
 ## Patent Hoarding
 - Something about local guilds stockpiling their patents as defense against other guilds?
 
-## API Patents
+## API Patents / Patents being completely distinct from Copyright
 - Wizard in a jail cell for casting a healing spell owned by BigCo, despite using different magic words or ingredients.
 
 ## Fellowship of the Random Integer Number Generator

@@ -159,5 +159,11 @@
     "position": [29, 90],
     "sprite": [1060, 1061, 1062, 1063],
     "speed": 500
+  },
+  {
+	"position": [240,59],
+	"sprite": 8,
+	"region": [241, 58, 2, 3],
+	"dialogue": "PRISONER-1"
   }
 ]

@@ -483,3 +483,25 @@ You manage to escape, but you dropped half your gold in the process!
 * RESTART GAME [GAMEOVER]
 
   ## need to have a way to teleport back to town on 'flee' ##
+
+  ## the imprisoned wizard ##
+  
+[PRISONER-1]
+
+INMATE: Psst... can you get me outta here?
+
+* Uhh... why are you locked up? [PRISONER-2]
+* No way! [END]
+
+[PRISONER-2]
+
+* Did you steal the spell? [PRISONER-3]
+* Ain't that a shame. [END]
+
+[PRISONER-3]
+
+INMATE: No! I wrote it myself! But the Evil Empire said they have the exclusive rights to all CURE spells.
+INMATE: If I get out of here, I'm never going to write another CURE spell again. It's just not worth it!
+
+* I'll see what I can do. [END->NOOP]
+* Can't help ya, bud. [END->NOOP]
