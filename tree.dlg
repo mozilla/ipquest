@@ -12,9 +12,14 @@ But first, he must gather the allies and tools necessary in his quest to restore
 
 [RING-start]
 
-ELDER POSA: We have only one choice.
-ELDER POSA: The Random Integer Number Generator must be...
-ELDER POSA: ...invalidated.
+ELDER POSA: Are you here to oppose the Evil Empire's abuses?
+
+* Yes! [RING-0]
+* No! [END]
+
+[RING-0]
+ELDER POSA: So long as the Evil Empire has the power to exclude others from the Really Important New Garden, there is no hope.
+ELDER POSA: We have only one choice. The Really Important New Garden must be... invalidated.
 
 * Stay awhile, and listen. [RING-1]
 * Ain't got time for that! [END]
@@ -38,7 +43,7 @@ BORED O'MERE: There is evil there that does not sleep and the great eye is ever 
 BORED O'MERE: Tis a barren wasteland, riddled with fire and ash and dust.
 BORED O'MERE: The very air you breathe is a poisonous fume. Not with ten thousand attorneys could you do this. It is folly.
 
-* (Interrupt) Excuse me, but I am also on a quest to invalidate the RING. [RING-3]
+* (Interrupt) Excuse me, but I am also on a quest to challenge the Evil Empire. [RING-3]
 * This is getting way too complicated. [END]
 
 [RING-3]
@@ -62,7 +67,7 @@ ARAGORN: Well this is awkward. We kind of imagined that everyone in the Common I
 
 [RING-leave]
 
-ELDER POSA: Well, see you all at the Mt. Pto. Good luck!
+ELDER POSA: Well, see you all at Mt. Pto. Good luck!
 
 * You've got to be kidding me... [END]
 
@@ -427,16 +432,25 @@ You are prevented from using unlicensed equipment or abilities for the rest of t
 
 Select action:
 
-* PUNCH [TROLL-attack-punch]
+* PUNCH [TROLL-attack-punch2]
 * Abilities [TROLL-abilities2]
 
 [TROLL-attack-punch]
 You PUNCH the Troll and deal 1 damage!
 Select action:
 
-* PUNCH [TROLL-attack-punch]
-* SETTLE (Run) [TROLL-run]
-* RESTART GAME [GAMEOVER]
+* Swing RUSTY DAGGER [TROLL-attack-nolicense]
+* Shoot GILDED BOW [TROLL-attack-nolicense]
+* PUNCH [TROLL-attack-punch] 
+* Abilities [TROLL-abilities]
+* Back [TROLL-fight]
+
+[TROLL-attack-punch2]
+You PUNCH the Troll and deal 1 damage!
+Select action:
+
+* PUNCH [TROLL-attack-punch2]
+* Abilities [TROLL-abilities2]
 
 [TROLL-abilities]
 
