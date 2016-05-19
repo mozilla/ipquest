@@ -495,6 +495,7 @@ INMATE: Psst... can you get me outta here?
 
 [PRISONER-2]
 
+INMATE: Well, I casted CURE 5 on a sick cihld at the hospital, and the Evil Empire had me thrown in jail!
 * Did you steal the spell? [PRISONER-3]
 * Ain't that a shame. [END]
 
