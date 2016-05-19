@@ -92,16 +92,17 @@
 
     var trigger = board.getTrigger(x + 3, y + 8, 9, 7);
     if (trigger && (trigger !== lastTrigger || leftTrigger) && leftTrigger) {
-      if ((trigger.dialogue && trigger.auto) ||
-          (trigger.dialogue && kb.keys[kb.SPACE]) ||
-          !trigger.dialogue) {
-        if (trigger.destination) {
-          board.centerTo(trigger.center);
-          var pos = board.toCoords(trigger.destination);
-          x = pos.x;
-          y = pos.y;
+      if (trigger.destination) {
+        board.centerTo(trigger.center);
+        var pos = board.toCoords(trigger.destination);
+        x = pos.x;
+        y = pos.y;
+      }
+      if (trigger.dialogue && trigger.dialogue !== 'NOOP') {
+        if (trigger.entity) {
+          trigger.entity.prompt = true;
         }
-        if (trigger.dialogue && trigger.dialogue !== 'NOOP') {
+        if (trigger.auto || kb.keys[kb.SPACE]) {
           stop();
           dialogue.chat(trigger.dialogue, function (change) {
             if (change === 'GAMEOVER') {
@@ -115,12 +116,15 @@
             start();
           });
         }
-        lastTrigger = trigger;
-        leftTrigger = false;
       }
+      lastTrigger = trigger;
+      leftTrigger = false;
     }
     if (!trigger) {
       leftTrigger = true;
+      if (lastTrigger && lastTrigger.entity) {
+        lastTrigger.entity.prompt = null;
+      }
     }
 
     lastTick = tick;

@@ -35,5 +35,8 @@ function Entity(spritesheet, config) {
     } else {
       spritesheet.put(ctx, x, y, config.sprite);
     }
+    if (this.prompt) {
+      spritesheet.put(ctx, x, y - 16, 15);
+    }
   }
 }

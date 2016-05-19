@@ -44,28 +44,26 @@
     "dialogue": "NPC5"
   },
   {
-    "position": [241, 43],
+    "position": [242, 43],
     "region": [240, 45, 5, 1],
     "sprite": 8,
     "dialogue": "RING-start"
   },
   {
-    "position": [243, 43],
-    "region": [243, 43, 1, 1],
-    "sprite": 2,
-    "dialogue": "THINGY"
+    "position": [241, 43],
+    "sprite": 2
   },
   {
-	"position": [244, 43],
-	"sprite": 7
+  	"position": [243, 43],
+  	"sprite": 7
   },
   {
-	"position": [245, 44],
-	"sprite": 50
+  	"position": [245, 44],
+  	"sprite": 50
   },
   {
-	"position": [239, 44],
-	"sprite": 147
+  	"position": [239, 44],
+  	"sprite": 147
   },
   {
     "position": [242, 18],

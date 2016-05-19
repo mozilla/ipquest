@@ -57,6 +57,7 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
           width: config.region[2],
           height: config.region[3],
           destination: config.destination,
+          entity: entity,
           center: config.center
         };
       }
@@ -69,6 +70,7 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
             width: config.region[2],
             height: config.region[3],
             auto: config.auto,
+            entity: entity,
             dialogue: config.dialogue
           };
         } else {
@@ -78,6 +80,7 @@ function Screen(map, tileSize, viewWidth, viewHeight, spriteSheet) {
             width: 3,
             height: 2,
             auto: config.auto,
+            entity: entity,
             dialogue: config.dialogue
           };
         }
