@@ -48,28 +48,28 @@ BORED O'MERE: The very air you breathe is a poisonous fume. Not with ten thousan
 
 [RING-3]
 
-MERLIN: Your bravery is admirable. I will help you bear this burden of proof. We shall form a Common Interest of the RING.
+ELDER POSA: Your bravery is admirable. I will help you bear this burden of proof. We shall form a Common Interest of the RING.
 FOGHORN: The Common Interest has my sword.
 LEGOLASS: And the Common Interest has my bow.
 DWARF: And my axe!!
 
-* Awesome, count me in! [RING-join]
+* Awesome, you can join my party! [RING-join]
 
 [RING-join]
 
-MERLIN: Wait, aren't you going to contribute anything?
-MERLIN: ...
+ELDER POSA: Wait, don't you have a weapon?
+DWARF: ...
 FOGHORN: ...
-ELDER POSA: ...
-ARAGORN: Well this is awkward. We kind of imagined that everyone in the Common Interest would contribute something. I'm afraid we'll have to go our separate ways.
+BORED O'MERE: Well this is awkward.
 
-* Oh... [RING-leave]
+* Can't I use one of yours? [RING-leave]
+* I could help without a weapon! [RING-leave]
 
 [RING-leave]
 
-ELDER POSA: Well, see you all at Mt. Pto. Good luck!
+ELDER POSA: I'm sorry, that's not really going to work for us.
 
-* You've got to be kidding me... [END]
+* Guess I'll solo... [END]
 
   ## END COMMON INTEREST OF THE RING ##
 
@@ -137,7 +137,12 @@ MERCHANT: You look sharp holding that dagger. Get it? Har Har!
 MERCHANT: Oh yeah, I almost forgot!
 * Rusty Dagger - SOLD OUT (1 G) [SHOP1-list2]
 * Rusty Dagger License (99999 G) [SHOP1-Rusty_Dagger_License]
-* Leave [END->SHOP2-list1]
+* Leave [SHOP1-goodbye]
+
+[SHOP1-goodbye]
+MERCHANT: Check back later -- I get new stuff in from time to time!
+
+* Okay. [END->SHOP2-list1]
 
 [SHOP1-Rusty_Dagger_License]
 MERCHANT: You seem to be a little short there, buddy.
@@ -196,7 +201,7 @@ MERCHANT: Ha! You're kidding, right?
 [BARD-generic]
 SPOONY BARD: If only I had something to broadcast my newest songs. Hmm...
 
-  // After player finds Crystal of Transmitting, [BARD-generic->BARD-start]
+  ## After player finds Crystal of Transmitting, [BARD-generic->BARD-start]
 
 [BARD-start]
 SPOONY BARD: Wow, is that a Crystal of Transmitting? How did you get one of those?
@@ -495,7 +500,7 @@ INMATE: Psst... can you get me outta here?
 
 [PRISONER-2]
 
-INMATE: Well, I casted CURE 5 on a sick cihld at the hospital, and the Evil Empire had me thrown in jail!
+INMATE: Well, I casted CURE 5 on a sick child at the hospital, and the Evil Empire had me thrown in jail!
 * Did you steal the spell? [PRISONER-3]
 * Ain't that a shame. [END]
 
@@ -506,3 +511,25 @@ INMATE: If I get out of here, I'm never going to write another CURE spell again.
 
 * I'll see what I can do. [END->NOOP]
 * Can't help ya, bud. [END->NOOP]
+
+  ## the cure scroll
+  
+[SCROLL-1]
+
+You find a dusty scroll in the library.
+
+* Read it. [SCROLL-2]
+* Leave it alone. [END]
+
+[SCROLL-2]
+
+"A method for curing ailments comprising the steps of..."
+" casting a spell; wherein said spell has the effect of curing ailments of a target."
+
+* That seems a bit circular. [SCROLL-3]
+
+[SCROLL-3]
+
+You are cursed with WILLFULNESS. Damage taken is 300% of normal!
+
+* Worst. Library. Ever. [END->NOOP]

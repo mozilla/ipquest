@@ -1,6 +1,7 @@
 [
   {
-    "position": [245, 6],
+    "position": [245, 5],
+    "region": [244, 5, 3, 3],
     "sprite": 1,
     "dialogue": "SHOP1-start"
   },
