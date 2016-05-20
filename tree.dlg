@@ -533,3 +533,9 @@ You find a dusty scroll in the library.
 You are cursed with WILLFULNESS. Damage taken is 300% of normal!
 
 * Worst. Library. Ever. [END->NOOP]
+
+[LIBRARY-sign]
+
+The sign reads: "LIBRARY"
+
+* OK [END]
