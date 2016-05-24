@@ -239,7 +239,7 @@ footer .logo {
 footer .links li:not(:first-child):not(.clear):before {
   content: '\00B7\00A0';
 }
-footer .links li.clear {
+footer li.clear {
   display: block;
 }
 
@@ -272,10 +272,7 @@ footer ul ul {
   footer .row {
     display: block;
   }
-  footer .row * + * {
+  footer .row > * + * {
     margin: 1em 0 0;
-  }
-  footer .row ul {
-    display: block;
   }
 }
