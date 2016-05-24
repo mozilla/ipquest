@@ -9,7 +9,13 @@ body {
   line-height: 1.6;
   font-size: 16px;
 }
-h1 {
+
+h2 {
+  font-size: 2em;
+  margin: 0;
+}
+
+header h1 {
   text-align: center;
   font-family: "Press Start 2P", monospace;
   font-size: 48px;
@@ -50,10 +56,6 @@ body {
   background: #444;
   color: #fff;
   font-family: "Open Sans", sans-serif;
-  text-align: center;
-}
-img {
-  display: none;
 }
 .splash {
   width: 100%;
@@ -110,6 +112,8 @@ img {
   font-weight: 300;
   font-family: "Press Start 2P", monospace;
   font-size: 16px;
+  padding: 0;
+  margin-bottom: 2em;
 }
 
 .dialogue-out {
@@ -164,7 +168,114 @@ img {
   background: #fff;
 }
 
-.introduction {
+section, footer > .row {
   max-width: 1024px;
-  margin: 2rem auto;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+/* walkthrough */
+.walkthrough--details {
+  display: none;
+}
+.walkthrough--toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0 none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: .8em;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.walkthrough.walkthrough-open .walkthrough--details{
+  display: block;
+}
+
+/* Footer */
+
+footer {
+  background: #222;
+  font-size: .8em;
+  padding: 2em;
+  margin-top: 2em;
+}
+
+footer .logo img {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  height: 22px;
+}
+
+footer > .row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.row > * + * {
+  margin-left: 1em;
+  flex: 2;
+}
+
+.row > *:first-child {
+  flex: 3;
+}
+
+footer li span {
+  display: none;
+}
+
+footer li {
+  display: inline-block;
+}
+
+footer .logo {
+  background:
+}
+
+footer .links li:not(:first-child):not(.clear):before {
+  content: '\00B7\00A0';
+}
+footer .links li.clear {
+  display: block;
+}
+
+footer .links a:link {
+  color: #43c2ff;
+  text-decoration: none;
+}
+
+footer p {
+  max-width: 480px;
+}
+
+footer .links a:hover,
+footer .links a:active,
+footer .links a:visited,
+footer .links a:hover {
+  color: #10b1ff;
+  text-decoration: underline;
+}
+
+footer ul {
+  padding: 0;
+  list-style-type: none;
+}
+footer ul ul {
+  display: inline-block;
+}
+
+@media (max-width: 960px) {
+  footer .row {
+    display: block;
+  }
+  footer .row * + * {
+    margin: 1em 0 0;
+  }
+  footer .row ul {
+    display: block;
+  }
 }
