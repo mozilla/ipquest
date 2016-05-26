@@ -113,30 +113,31 @@ MERCHANT: I hear you're in need of equipment! Want to see what I've got for sale
 
 [SHOP1-list1]
 MERCHANT: I'm afraid I don't have much in stock at the moment.
-* Rusty Dagger (1 G) [SHOP1-Rusty_Dagger]
+* Cloth Armor (1 G) [SHOP1-Cloth_Armor]
 * Leave [END]
 
-[SHOP1-Rusty_Dagger]
-You received: 1 Rusty Dagger
-Equip Rusty Dagger?
-* Yes [SHOP1-Rusty_Dagger_Equip]
+[SHOP1-Cloth_Armor]
+You received: 1 Cloth Armor
+Equip Cloth Armor?
+* Yes [SHOP1-Cloth_Armor_Equip]
 * No [SHOP1-list1]
 
-[SHOP1-Rusty_Dagger_Equip]
-MERCHANT: You look sharp holding that dagger. Get it? Har Har!
-* Wait, what's this on the handle? [SHOP1-License]
+[SHOP1-Cloth_Armor_Equip]
+MERCHANT: Looks good! Check the tag for washing instructions.
+* Wait, what's this on the tag? [SHOP1-License]
 
 [SHOP1-License]
 
 "NO EXPRESS OR IMPLIED LICENSES TO ANY CLAIMS, including without limitation the patents of BigCo,"
 "ARE GRANTED IN CONNECTION WITH THIS ARTICLE. You may use this article only as authorized by appropriate licenses."
+"Machine Wash Cold. Tumble Dry Only."
 * What the heck? I need a separate license?! [SHOP1-list2]
 * I'm just going to ignore this for now. [END->SHOP1-list2]
 
 [SHOP1-list2]
 MERCHANT: Oh yeah, I almost forgot!
-* Rusty Dagger - SOLD OUT (1 G) [SHOP1-list2]
-* Rusty Dagger License (99999 G) [SHOP1-Rusty_Dagger_License]
+* Cloth Armor - SOLD OUT (1 G) [SHOP1-list2]
+* Cloth Armor License (99999 G) [SHOP1-Cloth_Armor_License]
 * Leave [SHOP1-goodbye]
 
 [SHOP1-goodbye]
@@ -144,7 +145,7 @@ MERCHANT: Check back later -- I get new stuff in from time to time!
 
 * Okay. [END->SHOP2-list1]
 
-[SHOP1-Rusty_Dagger_License]
+[SHOP1-Cloth_Armor_License]
 MERCHANT: You seem to be a little short there, buddy.
 * Guess I'll come back when I've earned some more gold. [SHOP1-list2]
 
@@ -155,8 +156,8 @@ MERCHANT: You seem to be a little short there, buddy.
 
 [SHOP2-list1]
 MERCHANT: Hey, welcome back! I got some new items in stock!
-* Rusty Dagger - SOLD OUT (1 G) [SHOP2-list1]
-* Rusty Dagger License (99999 G) [SHOP2-License1]
+* Cloth Armor - SOLD OUT (1 G) [SHOP2-list1]
+* Cloth Armor License (99999 G) [SHOP2-License1]
 * Fully Licensed Gilded Bow (5 G) [SHOP2-Gilded_Bow]
 * Leave [END]
 
@@ -180,8 +181,8 @@ You may use your Gilded Bow only as authorized by appropriate ammunition license
 
 [SHOP2-list2]
 MERCHANT: Hey, welcome back! I got some new items in stock!
-* Rusty Dagger - SOLD OUT (1 G) [SHOP2-list2]
-* Rusty Dagger License (99999 G) [SHOP2-License2]
+* Cloth Armor - SOLD OUT (1 G) [SHOP2-list2]
+* Cloth Armor License (99999 G) [SHOP2-License2]
 * Fully Licensed Gilded Bow - SOLD OUT (5 G) [SHOP2-list2]
 * Steel Arrow License (99999 G per arrow) [SHOP2-License2]
 * Leave [END]
@@ -357,46 +358,46 @@ STRANGER: There's a shop by the edge of town, just before you exit. You should c
 
 [OLDMAN-1]
 
-Ah, you've come!
+OLD MAN: Ah, you've come!
 
 * You were expecting me? [OLDMAN-2]
 
 [OLDMAN-2]
 
-Since before you felt the call...
-That feeling you were meant to do great things, I know it's in your heart...
-The dreams? More than just dreams...
+OLD MAN: Since before you felt the call...
+OLD MAN: That feeling you were meant to do great things, I know it's in your heart...
+OLD MAN: The dreams? More than just dreams...
 
 * You-you mean? [OLDMAN-3]
 
 [OLDMAN-3]
 
-Yes, child. You are the chosen one.
+OLD MAN: Yes, child. You are the CHOSEN ONE.
 
 * I am? [OLDMAN-4]
 
 [OLDMAN-4]
 
-Destined from birth to save our land.
+OLD MAN: Destined from birth to save our land.
 
 * So now what? [OLDMAN-5]
 
 [OLDMAN-5]
 
-Born of brave blood and pure heart.
-Noble of spirit, steady of hand.
+OLD MAN: Born of brave blood and pure heart.
+OLD MAN: Noble of spirit, steady of hand.
 
 * uh huh. [OLDMAN-6]
 
 [OLDMAN-6]
 
-From the humblest beginnings, sent for a mighty deed!
+OLD MAN: From the humblest beginnings, sent for a mighty deed!
 
-* Can we, uh, cut to the chase? [OLDMAN-7]
+* Can we, uh, cut to the chase? How do I save our land?! [OLDMAN-7]
 
 [OLDMAN-7]
 
-Patience.
+OLD MAN: On second thought, forget it. I got nothin'.
 
 [TROLL]
 
@@ -419,9 +420,7 @@ Select character:
 Select action:
 
   ## would be good to be able to conditionally have the first two options (based on whether player went to the shop and completed those dialogues) ##
-* Swing RUSTY DAGGER [TROLL-attack-nolicense]
-* Shoot GILDED BOW [TROLL-attack-nolicense]
-* PUNCH [TROLL-attack-punch] 
+* Attack [TROLL-attack-nolicense]
 * Abilities [TROLL-abilities]
 * Back [TROLL-fight]
 
@@ -444,9 +443,7 @@ Select action:
 You PUNCH the Troll and deal 1 damage!
 Select action:
 
-* Swing RUSTY DAGGER [TROLL-attack-nolicense]
-* Shoot GILDED BOW [TROLL-attack-nolicense]
-* PUNCH [TROLL-attack-punch] 
+* Attack [TROLL-attack-nolicense]
 * Abilities [TROLL-abilities]
 * Back [TROLL-fight]
 
@@ -512,7 +509,7 @@ INMATE: If I get out of here, I'm never going to write another CURE spell again.
 * I'll see what I can do. [END->NOOP]
 * Can't help ya, bud. [END->NOOP]
 
-  ## the cure scroll
+  ## the cure scroll / cursed library
   
 [SCROLL-1]
 
@@ -538,4 +535,3 @@ You are cursed with WILLFULNESS. Damage taken is 300% of normal!
 
 The sign reads: "LIBRARY"
 
-* OK [END]
