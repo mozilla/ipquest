@@ -321,9 +321,6 @@
       }
     ], loadProgress);
 
-    Promise.all([
-      wait(1000)(),
-      loading
-    ]).then(setup).then(titleScreen).catch(console.error.bind(console));
+    wait(1000)().then(loading).then(setup).then(titleScreen).catch(console.error.bind(console));
   });
 })();
