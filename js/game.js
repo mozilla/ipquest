@@ -119,6 +119,12 @@
               setTimeout(titleScreen, 0);
               return;
             }
+            if (change === 'FLEE') {
+              x = 39 * 16;
+              y = 30 * 16;
+              dude.face(0);
+              board.centerTo(7719);
+            }
             if (change) {
               trigger.dialogue = change;
             }

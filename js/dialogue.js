@@ -45,6 +45,8 @@ function Dialogue(tree, width, height) {
           outcome = null;
         } else if (outcome === 'GAMEOVER') {
           outcome = 'GAMEOVER';
+        } else if (outcome === 'FLEE') {
+          outcome = 'FLEE';
         } else if (outcome.match(/END->(.+)/)) {
           var parts = outcome.match(/END->(.+)/);
           curChat.choices.push([text, null, parts[1]]);
