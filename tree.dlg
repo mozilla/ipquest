@@ -269,7 +269,7 @@ That bard is a genius. He's done it again!
   ## end of random npc dialogue re: Bard ##
 
   ## TOWN GUIDE dialogue ##
-  
+
 [NPC5]
 STRANGER: Hey there! I don't think I've seen you around before -- you must be new.
 STRANGER: What brings you to town?
@@ -404,6 +404,7 @@ OLD MAN: On second thought, forget it. I got nothin'.
 You encountered two trolls!
 
 * Fight [TROLL-fight]
+* Run Away!! [END->FLEE]
 
 
 [TROLL-fight]
@@ -487,7 +488,7 @@ You manage to escape, but you dropped half your gold in the process!
   ## need to have a way to teleport back to town on 'flee' ##
 
   ## the imprisoned wizard ##
-  
+
 [PRISONER-1]
 
 INMATE: Psst... can you get me outta here?
@@ -510,7 +511,7 @@ INMATE: If I get out of here, I'm never going to write another CURE spell again.
 * Can't help ya, bud. [END->NOOP]
 
   ## the cure scroll / cursed library
-  
+
 [SCROLL-1]
 
 You find a dusty scroll in the library.
@@ -534,4 +535,3 @@ You are cursed with WILLFULNESS. Damage taken is 300% of normal!
 [LIBRARY-sign]
 
 The sign reads: "LIBRARY"
-

@@ -7,7 +7,7 @@ html, body {
 body {
   border-top: 2px solid white;
   line-height: 1.6;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 h2 {
@@ -184,6 +184,16 @@ section, footer > .row {
   padding: 0.5em;
 }
 
+.pitch {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+hr {
+  max-width: 800px;
+  margin: 2em auto 1em;
+}
+
 /* walkthrough */
 .walkthrough--details {
   display: none;
@@ -200,10 +210,9 @@ section, footer > .row {
   text-decoration: underline;
   cursor: pointer;
 }
-.walkthrough.walkthrough-open .walkthrough--details{
+.walkthrough.walkthrough-open > .walkthrough--details {
   display: block;
 }
-
 
 /* Footer */
 
