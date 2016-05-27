@@ -404,7 +404,7 @@ OLD MAN: On second thought, forget it. I got nothin'.
 You encountered two trolls!
 
 * Fight [TROLL-fight]
-* Run Away!! [END->FLEE]
+* Run Away!! [FLEE]
 
 
 [TROLL-fight]

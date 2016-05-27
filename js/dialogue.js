@@ -139,6 +139,9 @@ function Dialogue(tree, width, height) {
           if (choice[1] === 'GAMEOVER') {
             self.close();
             cb('GAMEOVER');
+          } else if (choice[1] === 'FLEE') {
+            self.close();
+            cb('FLEE');
           } else {
             chat(choice[1], cb);
           }
