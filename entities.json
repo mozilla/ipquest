@@ -13,12 +13,6 @@
     "dialogue": "guard-1"
   },
   {
-    "position": [28, 0],
-    "region": [27, 0, 11, 2],
-    "destination": 8690,
-    "center": 8178
-  },
-  {
     "position": [42, 27],
     "sprite": 6
   },
@@ -32,12 +26,6 @@
     "sheet": "chars",
     "sprite": 5,
     "dialogue": "OLDMAN-1"
-  },
-  {
-    "position": [242, 31],
-    "sprite": 12,
-    "auto": true,
-    "dialogue": "TROLL"
   },
   {
     "position": [50, 54],
@@ -113,11 +101,6 @@
   },
   {
     "position": [87, 79],
-    "sprite": [725, 726, 727, 728],
-    "speed": 500
-  },
-  {
-    "position": [27, 14],
     "sprite": [725, 726, 727, 728],
     "speed": 500
   },

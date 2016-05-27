@@ -98,40 +98,60 @@
     }
 
     var trigger = board.getTrigger(x + 3, y + 8, 9, 7);
+
+    // Troll Encounters!
+    if (22 * 16 <= x && x <= 43 * 16 && 0 <= y && y <= 22 * 16) {
+      if (Math.random() > .995) {
+        trigger = {
+          "auto": true,
+          "dialogue": "TROLL",
+          "encounter": true,
+          "destination": 8690,
+          "center": 8178
+        };
+      }
+    }
+
+
     if (trigger) {
-      if (trigger.destination && (trigger !== lastTrigger || leftTrigger) && leftTrigger) {
-        board.centerTo(trigger.center);
-        var pos = board.toCoords(trigger.destination);
-        x = pos.x;
-        y = pos.y;
-      }
-      if (trigger.dialogue && trigger.dialogue !== 'NOOP') {
-        if (trigger.entity && !trigger.auto) {
-          trigger.entity.prompt = true;
+      maybeEncounter(trigger, function () {
+        if (trigger.destination && (trigger !== lastTrigger || leftTrigger) && leftTrigger) {
+          board.centerTo(trigger.center);
+          var pos = board.toCoords(trigger.destination);
+          x = pos.x;
+          y = pos.y;
+          render();
         }
-        if (trigger.auto || (kb.keys[kb.SPACE] && dialogueCoolDown === 0)) {
-          stop();
-          dialogue.chat(trigger.dialogue, function (change) {
-            dialogueCoolDown = 20;
-            trigger.entity.prompt = null;
-            if (change === 'GAMEOVER') {
-              stop();
-              setTimeout(titleScreen, 0);
-              return;
-            } else if (change === 'FLEE') {
-              x = 39 * 16;
-              y = 30 * 16;
-              dude.face(0);
-              board.centerTo(7719);
-            } else if (change) {
-              trigger.dialogue = change;
-            }
-            start();
-          });
+        if (trigger.dialogue && trigger.dialogue !== 'NOOP') {
+          if (trigger.entity && !trigger.auto) {
+            trigger.entity.prompt = true;
+          }
+          if (trigger.auto || (kb.keys[kb.SPACE] && dialogueCoolDown === 0)) {
+            stop();
+            dialogue.chat(trigger.dialogue, function (change) {
+              dialogueCoolDown = 20;
+              if (trigger.entity) {
+                trigger.entity.prompt = null;
+              }
+              if (change === 'GAMEOVER') {
+                stop();
+                setTimeout(titleScreen, 0);
+                return;
+              } else if (change === 'FLEE') {
+                x = 39 * 16;
+                y = 30 * 16;
+                dude.face(0);
+                board.centerTo(7719);
+              } else if (change) {
+                trigger.dialogue = change;
+              }
+              start();
+            });
+          }
         }
-      }
-      lastTrigger = trigger;
-      leftTrigger = false;
+        lastTrigger = trigger;
+        leftTrigger = false;
+      });
     }
     if (!trigger) {
       leftTrigger = true;
@@ -143,6 +163,28 @@
     lastTick = tick;
   }
 
+
+  function maybeEncounter(trigger, callback) {
+    if (trigger.encounter) {
+      stop();
+      var y = -8;
+      outCtx.fillStyle = '#000';
+      function bar() {
+        outCtx.fillRect(0, y * SCALE, WIDTH * SCALE, 4 * SCALE);
+        outCtx.fillRect(0, (HEIGHT - 4 - y) * SCALE, WIDTH * SCALE, 4 * SCALE);
+        y += 8;
+        if (y < HEIGHT) {
+          setTimeout(bar, 50);
+        } else {
+          render();
+          callback();
+        }
+      }
+      bar();
+    } else {
+      callback();
+    }
+  }
 
   function mapRect(map, px, py, s, w, h) {
     for (var y = 0; y < h; y++) {
