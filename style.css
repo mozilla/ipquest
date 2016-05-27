@@ -7,7 +7,7 @@ html, body {
 body {
   border-top: 2px solid white;
   line-height: 1.6;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 h2 {
@@ -123,7 +123,7 @@ body {
   font-family: "Press Start 2P", monospace;
   font-size: 16px;
   padding: 0;
-  margin-bottom: 2em;
+/*  margin-bottom: 2em; */
 }
 
 .dialogue-out {
@@ -181,7 +181,7 @@ body {
 section, footer > .row {
   max-width: 1024px;
   margin: 0 auto;
-  padding: 1em;
+  padding: 0.5em;
 }
 
 /* walkthrough */
