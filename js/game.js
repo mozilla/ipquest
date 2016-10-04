@@ -32,6 +32,7 @@
   var lastTrigger = 0;
   var leftTrigger = true;
   var dialogueCoolDown = 0;
+  var seenOpening = false;
 
   function tick() {
     if (!running) return;
@@ -112,6 +113,13 @@
       }
     }
 
+    if (!seenOpening) {
+      stop();
+      dialogue.chat('OPENING', function () {
+        seenOpening = true;
+        start();
+      });
+    }
 
     if (trigger) {
       maybeEncounter(trigger, function () {

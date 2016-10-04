@@ -17,7 +17,7 @@
     "sprite": 6
   },
   {
-    "position": [42, 45],
+    "position": [12, 46],
     "sprite": 4,
     "dialogue": "BARD-generic"
   },
@@ -28,7 +28,7 @@
     "dialogue": "OLDMAN-1"
   },
   {
-    "position": [50, 54],
+    "position": [53, 47],
     "sprite": 3,
     "dialogue": "NPC5"
   },
@@ -118,11 +118,6 @@
     "position": [33, 89],
     "sprite": [747, 748],
     "speed": 850
-  },
-  {
-    "position": [47, 47],
-    "region": [47, 50, 1, 1],
-    "dialogue": "OPENING"
   },
   {
     "position": [28, 89],
