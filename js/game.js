@@ -2,7 +2,7 @@
   var WIDTH = 256,
     HEIGHT = 144,
     SCALE = 3,
-    HORIZON = 48,
+    HORIZON = 56,
     running = false,
     kb = new KeyboardControls(),
     buffer, boardCanvas, context, outCtx,
@@ -32,7 +32,7 @@
   var lastTrigger = 0;
   var leftTrigger = true;
   var dialogueCoolDown = 0;
-  var seenOpening = false;
+  var seenOpening = window.location.hash === '#skip';
 
   function tick() {
     if (!running) return;
@@ -295,7 +295,7 @@
     board.centerTo(x / 16, y / 16);
 
     Loader.get('entities').forEach(function (e) {
-      if (e.speed) {
+      if (e.sheet === 'tiles') {
         board.addEntity(new Entity(sheet, e));
       } else {
         board.addEntity(new Entity(chars, e));

@@ -2,157 +2,198 @@
   {
     "position": [245, 5],
     "region": [244, 5, 3, 3],
-    "sprite": 1,
+    "sprite": [1, 17],
+    "speed": 800,
+    "sheet": "characters",
     "dialogue": "SHOP1-start"
   },
   {
     "position": [37, 27],
     "region": [37, 27, 6, 2],
-    "sprite": 6,
+    "sprite": [6, 22],
+    "speed": 800,
+    "sheet": "characters",
     "auto": true,
     "dialogue": "guard-1"
   },
   {
     "position": [42, 27],
-    "sprite": 6
+    "sheet": "characters",
+    "sprite": [6, 22],
+    "speed": 800
   },
   {
     "position": [12, 46],
-    "sprite": 4,
+    "sheet": "characters",
+    "sprite": [4, 20],
+    "speed": 800,
     "dialogue": "BARD-generic"
   },
   {
     "position": [244, 18],
-    "sheet": "chars",
-    "sprite": 5,
+    "sheet": "characters",
+    "sprite": [5, 21],
+    "speed": 800,
     "dialogue": "OLDMAN-1"
   },
   {
     "position": [53, 47],
-    "sprite": 3,
+    "sheet": "characters",
+    "sprite": [3, 19],
+    "speed": 800,
     "dialogue": "NPC5"
   },
   {
     "position": [242, 43],
+    "sheet": "characters",
     "region": [240, 45, 5, 1],
-    "sprite": 8,
+    "sprite": [8, 24],
+    "speed": 800,
     "dialogue": "RING-start"
   },
   {
     "position": [241, 43],
-    "sprite": 2
+    "sheet": "characters",
+    "sprite": [2, 18],
+    "speed": 800
   },
   {
-  	"position": [243, 43],
-  	"sprite": 7
+    "position": [243, 43],
+    "sheet": "characters",
+    "sprite": [7, 23],
+    "speed": 800
   },
   {
-  	"position": [245, 44],
-  	"sprite": 50
+    "position": [245, 44],
+    "sheet": "characters",
+    "sprite": [50, 66],
+    "speed": 800
   },
   {
-  	"position": [239, 44],
-  	"sprite": 147
+    "position": [239, 44],
+    "sheet": "characters",
+    "sprite": [147, 163],
+    "speed": 800
   },
   {
     "position": [242, 18],
     "sprite": [5, 240, 241, 242],
-    "speed": 350
+    "speed": 350,
+    "sheet": "tiles"
   },
   {
     "position": [246, 18],
     "sprite": [5, 240, 241, 242],
-    "speed": 350
+    "speed": 350,
+    "sheet": "tiles"
   },
   {
     "position": [237, 43],
     "sprite": [5, 240, 241, 242],
-    "speed": 350
+    "speed": 350,
+    "sheet": "tiles"
   },
   {
     "position": [247, 43],
     "sprite": [5, 240, 241, 242],
-    "speed": 350
+    "speed": 350,
+    "sheet": "tiles"
   },
   {
     "position": [243, 15],
     "sprite": [1746, 1747, 1748],
-    "speed": 350
+    "speed": 350,
+    "sheet": "tiles"
   },
   {
     "position": [240, 56],
     "sprite": [1746, 1747, 1748],
-    "speed": 350
+    "speed": 350,
+    "sheet": "tiles"
   },
   {
     "position": [244, 56],
     "sprite": [1746, 1747, 1748],
-    "speed": 350
+    "speed": 350,
+    "sheet": "tiles"
   },
   {
     "position": [245, 15],
     "sprite": [1746, 1747, 1748],
-    "speed": 350
+    "speed": 350,
+    "sheet": "tiles"
   },
   {
     "position": [66, 79],
     "sprite": [725, 726, 727, 728],
-    "speed": 500
+    "speed": 500,
+    "sheet": "tiles"
   },
   {
     "position": [87, 79],
     "sprite": [725, 726, 727, 728],
-    "speed": 500
+    "speed": 500,
+    "sheet": "tiles"
   },
   {
     "position": [34, 46],
     "sprite": [747, 748],
-    "speed": 850
+    "speed": 850,
+    "sheet": "tiles"
   },
   {
     "position": [88, 74],
     "sprite": [747, 748],
-    "speed": 850
+    "speed": 850,
+    "sheet": "tiles"
   },
   {
     "position": [33, 89],
     "sprite": [747, 748],
-    "speed": 850
+    "speed": 850,
+    "sheet": "tiles"
   },
   {
     "position": [28, 89],
     "sprite": [1000, 1001, 1002, 1003],
-    "speed": 500
+    "speed": 500,
+    "sheet": "tiles"
   },
   {
     "position": [29, 89],
     "sprite": [1020, 1021, 1022, 1023],
-    "speed": 500
+    "speed": 500,
+    "sheet": "tiles"
   },
   {
     "position": [28, 90],
     "sprite": [1040, 1041, 1042, 1043],
-    "speed": 500
+    "speed": 500,
+    "sheet": "tiles"
   },
   {
     "position": [29, 90],
     "sprite": [1060, 1061, 1062, 1063],
-    "speed": 500
+    "speed": 500,
+    "sheet": "tiles"
   },
   {
-	"position": [240,59],
-	"sprite": 8,
-	"region": [241, 58, 2, 3],
-	"dialogue": "PRISONER-1"
+    "position": [240,59],
+    "sprite": [8, 24],
+    "region": [241, 58, 2, 3],
+    "sheet": "characters",
+    "dialogue": "PRISONER-1"
   },
   {
     "position": [244, 71],
-	"region": [244,71, 2, 2],
-	"dialogue": "SCROLL-1"
+    "region": [244,71, 2, 2],
+    "sheet": "characters",
+    "dialogue": "SCROLL-1"
   },
   {
     "position": [35, 57],
-	"region": [34, 57, 2, 2],
-	"dialogue": "LIBRARY-sign"
+    "region": [34, 57, 2, 2],
+    "sheet": "characters",
+    "dialogue": "LIBRARY-sign"
   }
 ]
