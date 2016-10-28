@@ -6,7 +6,7 @@ In a world, plunged into chaos, one man is destined to rise up to defend the kin
 But first, he must gather the allies and tools necessary in his quest to restore peace and justice to the land...
 
 * Start [END->NOOP]
-
+* What was that again? [OPENING]
 
   ## COMMON INTEREST OF THE RING ##
 
@@ -534,3 +534,7 @@ You are cursed with WILLFULNESS. Damage taken is 300% of normal!
 [LIBRARY-sign]
 
 The sign reads: "LIBRARY"
+
+[SHOP-sign]
+
+The signs reads: "LIABLE LARRY'S LOOT SHOP"

@@ -180,20 +180,27 @@
   {
     "position": [240,59],
     "sprite": [8, 24],
+    "speed": 800,
     "region": [241, 58, 2, 3],
     "sheet": "characters",
     "dialogue": "PRISONER-1"
   },
   {
-    "position": [244, 71],
-    "region": [244,71, 2, 2],
+    "position": [243, 71],
+    "region": [242,71, 3, 2],
     "sheet": "characters",
     "dialogue": "SCROLL-1"
   },
   {
-    "position": [35, 57],
-    "region": [34, 57, 2, 2],
+    "position": [35, 58],
+    "region": [34, 58, 3, 2],
     "sheet": "characters",
     "dialogue": "LIBRARY-sign"
+  },
+  {
+    "position": [33, 32],
+    "region": [32, 32, 3, 2],
+    "sheet": "characters",
+    "dialogue": "SHOP-sign"
   }
 ]
