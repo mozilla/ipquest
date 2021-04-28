@@ -1,5 +1,8 @@
 # ipquest
-[It's Dangerous To Go Alone.](http://patentquest.mozilla.org/)
+
+**IMPORTANT ipquest / patentquest has been inactive since 2016. an archival copy is hosted on github pages**
+
+[It's Dangerous To Go Alone.](https://mozilla.github.io/ipquest/)
 
 Patents are [challenging for open-source software][blog]. But that doesn't mean they
 aren't challenging for others, too! Thankfully, the heroes from our most
